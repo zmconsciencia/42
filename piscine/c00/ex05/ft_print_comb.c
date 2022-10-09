@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 06:26:36 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/05 06:26:36 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:24:31 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void    ft_print_comb(void)
         }
         a++;
     }
+    write (1, "\n", 1);
 }
 
 int main(void)
