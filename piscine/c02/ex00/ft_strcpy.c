@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:04:49 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/12 13:13:12 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:42:41 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char    *ft_strcpy(char *dest, char *src)
         dest[i] = src[i];
         i++;
     }
+    dest[i] = '\0';
     return (dest);
 }
 
