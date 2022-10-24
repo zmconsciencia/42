@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strn.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 10:26:51 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/20 11:27:53 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/20 16:25:57 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/20 16:46:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
 
-size_t ft_strn(const char *str)
+void	*ft_memset(void *b, int c, size_t n)
 {
-    size_t i;
+	char	*p;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-
-int main(void)
-{
-    char test[] = "abcd";
-
-    printf("%ld\n", ft_strn(test));
-    printf("%ld\n", strn(test));
+	p = (char *)b;
+	while (n > 0)
+	{
+		p[n - 1] = c;
+		n--;
+	}
+	return (b);
 }

@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strn.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 10:26:51 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/20 11:27:53 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/20 16:31:53 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/20 16:36:23 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <strings.h>
 #include <stdio.h>
 
-size_t ft_strn(const char *str)
+void    bzero(void *s, size_t n)
 {
-    size_t i;
-
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-
-int main(void)
-{
-    char test[] = "abcd";
-
-    printf("%ld\n", ft_strn(test));
-    printf("%ld\n", strn(test));
+    ft_memset(s, 0, n);
 }

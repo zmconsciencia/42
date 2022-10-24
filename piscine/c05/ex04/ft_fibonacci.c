@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strn.c                                        :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 10:26:51 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/20 11:27:53 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/19 17:57:28 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/19 18:09:58 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdio.h>
 
-size_t ft_strn(const char *str)
+int ft_fibonacci(int index)
 {
-    size_t i;
+	int	fib;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	if (index < 0)
+		return (-1);
+	if (index == 0)
+		return (0);
+	else if (index == 1)
+		return (1);
+	fib = ft_fibonacci(index - 1) + ft_fibonacci(index - 2);
+	return (fib);
 }
 
-int main(void)
+int	main(void)
 {
-    char test[] = "abcd";
+	int res;
+	int index;
 
-    printf("%ld\n", ft_strn(test));
-    printf("%ld\n", strn(test));
+	index = 0;
+	while (index < 12)
+	{
+		res = ft_fibonacci(index);
+		printf ("%d, ", res);
+		index++;
+	}
+	res = ft_fibonacci(index);
+	printf ("%d\n", res);
+	return (0);
 }

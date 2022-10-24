@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strn.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 10:26:51 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/20 11:27:53 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/20 16:44:27 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/20 16:47:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
 
-size_t ft_strn(const char *str)
+void    *memmove(void *dest, const void *src, size_t n)
 {
-    size_t i;
+    unsigned char *t1;
+	unsigned char *t2;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-
-int main(void)
-{
-    char test[] = "abcd";
-
-    printf("%ld\n", ft_strn(test));
-    printf("%ld\n", strn(test));
+	t1 = dest;
+	t2 = (unsigned char*)src;
+	if (dest < src)
+		return (ft_memcpy(dest, src, n));
+	if (dest > src)
+		while (n--)
+			t1[n] = t2[n];
+	return (dest);
 }

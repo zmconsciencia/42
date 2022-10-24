@@ -1,32 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strn.c                                        :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 10:26:51 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/20 11:27:53 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/19 16:44:10 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/19 17:17:19 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdio.h>
 
-size_t ft_strn(const char *str)
+int ft_iterative_factorial(int nb)
 {
-    size_t i;
-
-    i = 0;
-    while (str[i])
-        i++;
+    int i = 1;
+    if (nb < 0)
+        return (0);
+    while (nb > 1)
+    {
+        i *= nb;
+        nb--;
+    }
     return (i);
 }
 
-int main(void)
-{
-    char test[] = "abcd";
+#include <stdio.h>
 
-    printf("%ld\n", ft_strn(test));
-    printf("%ld\n", strn(test));
+int	ft_iterative_factorial(int nb);
+
+int	main(void)
+{
+	int n;
+	int res;
+
+	n = -5;
+	while (n <= 10)
+	{
+		res = ft_iterative_factorial(n);
+		printf("n = %d, n! = %d\n", n, res);
+		n++;
+	}
+	return (0);
 }

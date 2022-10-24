@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strn.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 10:26:51 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/20 11:27:53 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/20 18:18:49 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/20 18:19:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
 
-size_t ft_strn(const char *str)
+char	*ft_strrchr(const char *s, int c)
 {
-    size_t i;
+	int		i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-
-int main(void)
-{
-    char test[] = "abcd";
-
-    printf("%ld\n", ft_strn(test));
-    printf("%ld\n", strn(test));
+	i = ft_strlen(s);
+	if (c == 0)
+		return ((char *)s + i);
+	while (i >= 0)
+	{
+		if (s[i] == c)
+			return ((char *)s + i);
+		i--;
+	}
+	return (NULL);
 }

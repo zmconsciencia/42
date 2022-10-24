@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 12:00:09 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/20 12:36:26 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:51:06 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@ size_t	ft_strlen(const char *str);
 
 size_t	ft_strlcat(char *dest, char *src, size_t size)
 {
-	size_t	len_dest;
-	size_t	len_src;
+	size_t	n_dest;
+	size_t	n_src;
 	size_t	i;
 	size_t	ret;
 
 	i = 0;
-	len_dest = ft_strlen(dest);
-	len_src = ft_strlen(src);
-	if (size <= len_dest)
-		return (size + len_src);
+	n_dest = ft_strlen(dest);
+	n_src = ft_strlen(src);
+	if (size <= n_dest)
+		return (size + n_src);
 	else
 	{
-		while ((i + 1 < (size - len_dest)) && (src[i] != '\0'))
+		while ((i + 1 < (size - n_dest)) && (src[i] != '\0'))
 		{
-			dest[len_dest + i] = src[i];
+			dest[n_dest + i] = src[i];
 			i++;
 		}
-		dest[len_dest + i] = '\0';
+		dest[n_dest + i] = '\0';
 	}
-	ret = len_dest + len_src;
+	ret = n_dest + n_src;
 	return (ret);
 }
 
@@ -77,14 +77,26 @@ int				main(void)
 	dest = "abcdefghijklmnopr";
 	ft_dest = "abcdefghijklmnopr";
 	ft_strlcat_test(dest, ft_dest, src, 0);
+    printf("%ld\n", ft_strlcat(dest, src, 0));
+    printf("%ld\n", strlcat(dest, src, 0));
 	ft_strlcat_test(dest, ft_dest, src, 1);
+    printf("%ld\n", ft_strlcat(dest, src, 1));
+    printf("%ld\n", strlcat(dest, src, 1));
 	ft_strlcat_test(dest, ft_dest, src, 4);
+    printf("%ld\n", ft_strlcat(dest, src, 4));
+    printf("%ld\n", strlcat(dest, src, 4));
 	ft_strlcat_test(dest, ft_dest, src, 10);
+    printf("%ld\n", ft_strlcat(dest, src, 10));
+    printf("%ld\n", strlcat(dest, src, 10));
 	// valid case, dest is null terminated in the first size - 1 bytes, modified and terminated
 	src = "ghijkl";
 	dest = strcpy(calloc(13, sizeof(char)), "abcdef");
 	ft_dest = strcpy(calloc(13, sizeof(char)), "abcdef");
 	ft_strlcat_test(dest, ft_dest, src, 8);
+    printf("%ld\n", ft_strlcat(dest, src, 8));
+    printf("%ld\n", strlcat(dest, src, 8));
 	ft_strlcat_test(dest, ft_dest, src, 10);
+    printf("%ld\n", ft_strlcat(dest, src, 10));
+    printf("%ld\n", strlcat(dest, src, 10));
 	return (0);
 }

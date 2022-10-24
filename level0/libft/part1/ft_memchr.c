@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strn.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 10:26:51 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/20 11:27:53 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/21 12:56:01 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/21 13:01:22 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
 
-size_t ft_strn(const char *str)
+void *memchr(const void *s, int c, size_t n)
 {
-    size_t i;
+	char	*str;
+	size_t	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
+	i = 0;
+	str = (char *)s;
+	while (i < n)
+	{
+		if ((unsigned char)str[i] == (unsigned char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	return (NULL);
 
-int main(void)
-{
-    char test[] = "abcd";
-
-    printf("%ld\n", ft_strn(test));
-    printf("%ld\n", strn(test));
 }
