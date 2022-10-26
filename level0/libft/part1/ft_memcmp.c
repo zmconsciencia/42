@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 16:31:53 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/26 11:14:01 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/25 11:49:43 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/25 11:55:42 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <strings.h>
 #include <stdio.h>
 
-/*
-void	bzero(void *s, size_t n)
+int	memcmp(const void *s1, const void *s2, size_t n)
 {
-	ft_memset(s, 0, n);
-}
-*/
+	size_t			i;
+	unsigned char	*c1;
+	unsigned char	*c2;
 
-
-void	bzero(void *s, size_t n)
-{
-	char	*t;
-
-	t = (char *)s;
-	while (n > 0)
+	i = 0;
+	c1 = (char *)s1;
+	c2 = (char *)s2;
+	while (i < n)
 	{
-		t[n - 1] = 0;
-		n--;
+		if (c1[i] != c2[i])
+			return (c1[i] - c2[i]);
+		i++;
 	}
-	return (s);
+	return (0);
 }
+

@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 16:31:53 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/26 11:14:01 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/26 14:38:34 by jabecass          #+#    #+#             */
+/*   Updated: 2022/10/26 14:57:10 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <strings.h>
-#include <stdio.h>
+#include <stdlib.h>
 
-/*
-void	bzero(void *s, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	ft_memset(s, 0, n);
-}
-*/
+	size_t	i;
+	char	*a;
 
-
-void	bzero(void *s, size_t n)
-{
-	char	*t;
-
-	t = (char *)s;
-	while (n > 0)
+	if (nmemb == 0 || size == 0)
 	{
-		t[n - 1] = 0;
-		n--;
+		nmemb = 1;
+		size = 1;
 	}
-	return (s);
+	i = 0;
+	a = malloc(nmemb * size);
+	if (!a)
+		return (NULL);
+	if (nmemb != 0)
+	{
+		while (i < nmemb)
+		{
+			a[i] = 0;
+			i++;
+		}
+		return ((void *)a);
+	}
+	return ((void *)a);
 }
