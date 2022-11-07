@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:55:25 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/26 16:14:28 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:59:17 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char	*big, const char *little, size_t len)
 	i = 0;
 	j = 0;
 	if (!little[i])
-		return ((char *)(&big[i]));
+		return ((char *)(big + i));
 	if (len == 0)
 		return (NULL);
 	while (big[i] && i < len)
@@ -28,11 +28,11 @@ char	*ft_strnstr(const char	*big, const char *little, size_t len)
 		j = 0;
 		while (big[i + j] == little[j] && (i + j) < len)
 		{
-			if (!little[j + 1])
+			if (little[j + 1] == '\0')
 				return ((char *)(&big[i]));
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

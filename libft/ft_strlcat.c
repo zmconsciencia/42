@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 12:00:09 by jabecass          #+#    #+#             */
-/*   Updated: 2022/10/31 10:57:35 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:20:46 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		return (ft_strlen(src));
 	len_dest = ft_strlen(dest);
 	len_src = ft_strlen(src);
+	ret = len_dest + len_src;
 	if (size <= len_dest)
 		return (size + len_src);
 	else
@@ -35,6 +36,5 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		}
 		dest[len_dest + i] = '\0';
 	}
-	ret = len_dest + len_src;
 	return (ret);
 }

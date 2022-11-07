@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 11:12:52 by jabecass          #+#    #+#             */
-/*   Updated: 2022/11/02 11:00:17 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:42:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**ft_split(const char *s, char c)
 	while (++i < wdcount(s, c))
 	{
 		k = 0;
-		split[i] = tstr(wdlen(&s[j], c) + 1);
+		split[i] = tstr(wdlen(&s[j], c));
 		if (!split[i])
 			split[i] = NULL;
 		while (s[j] == c)

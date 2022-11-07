@@ -1,58 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 10:39:09 by jabecass          #+#    #+#             */
-/*   Updated: 2022/11/07 15:29:34 by jabecass         ###   ########.fr       */
+/*   Created: 2022/11/07 15:31:04 by jabecass          #+#    #+#             */
+/*   Updated: 2022/11/07 15:44:57 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	countdigits(int n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	i;
+	t_list	*new;
+	t_list	*temp;
+
+	temp = lst;
+	new = NULL;
+	while (lst)
+	{
+		temp = ft_lstnew(f(lst ->content));
+		if (!temp)
+			ft_lstdelone(temp, del);
+		ft_lstadd_back(&new, temp);
+		lst = lst ->next;
+	}
+	return (new);
+}
+
+/*
+unsigned int	i;
+	char			*str;
 
 	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i += 1;
-	while (n != 0)
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s)) + 1);
+	if (str == NULL)
+		return (NULL);
+	while (s[i] != '\0')
 	{
-		n /= 10;
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	char	*str;
-	size_t	size;
-
-	size = countdigits(n);
-	str = malloc(size + 1);
-	if (n == INT_MIN)
-		return (ft_strdup("-2147483648"));
-	if (!str)
-		return (NULL);
-	str[size] = '\0';
-	if (n == 0)
-		str[0] = '0';
-	else if (n < 0)
-	{
-		str[0] = '-';
-		n *= -1;
-	}
-	while (n > 0)
-	{
-		str[size - 1] = (n % 10) + '0';
-		n /= 10;
-		size--;
-	}
+	str[i] = '\0';
 	return (str);
-}
+*/
