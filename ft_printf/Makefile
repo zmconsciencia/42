@@ -1,7 +1,8 @@
 NAME	= libftprintf.a
 
 SRCS	= ft_printf.c \
-		ft_convs.c
+		ft_convs.c \
+		ft_convs2.c
 
 SRCSF	=  ft_atoi.c \
 		ft_isdigit.c \

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:40:48 by jabecass          #+#    #+#             */
-/*   Updated: 2022/11/09 19:09:29 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:25:19 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ size_t	conversions(va_list args, char c)
 		len = ft_int_putnbr(va_arg(args, int));
 	else if (c == '%')
 		len = ft_int_putchar('%');
+	else if (c == 'u')
+		len = int_putnbr((long)va_arg(args, unsigned int));
+	else if (c == 'x')
+		len = ft_puthexa(va_arg(args, unsigned int), 1);
+	else if (c == 'X')
+		len = ft_puthexa(va_arg(args, unsigned int), 0);
+	else if (c == 'p')
+		len = ft_print_p(va_arg(args, long unsigned int));
 	return (len);
 }
 
