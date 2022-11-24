@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:54:28 by jabecass          #+#    #+#             */
-/*   Updated: 2022/11/23 12:53:09 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/11/24 10:38:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_line(int fd)
 	return (c);
 }
 
-
+/* 
  int main(){
 	
 	int fd = open ("test", O_RDONLY);
@@ -38,4 +38,4 @@ char	*get_next_line(int fd)
 	close(fd);
 
 	return (0);
-}
+} */
