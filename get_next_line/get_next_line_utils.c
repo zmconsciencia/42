@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:54:05 by jabecass          #+#    #+#             */
-/*   Updated: 2022/11/22 11:48:39 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/11/23 12:51:30 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,49 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i])
+	if (!str)
+		return (0);
+	while (str[i] && str[i] != '\n')
 		i++;
-	return (i);
+	return ((i + (str[i] == '\n')));
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+char	*ft_strjoin(char *str1, char *str2)
 {
+	char	*ret;
 	size_t	i;
 
-	i = 0;
-	if (size == 0)
+	ret = malloc(ft_strlen(str1) + ft_strlen(str2) + 1);
+	if (!ret)
+		return (NULL);
+	i = -1;
+	while (str1 && str1[++i])
+		ret[i] = str1[i];
+	i += (!str1);
+	while (*str2)
 	{
-		while (src[i])
-			i++;
-		return (i);
+		ret[i++] = *str2;
+		if (*str2++ == '\n')
+			break ;
 	}
-	while (i < size - 1 && src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	if (i < size)
-		dest[i] = '\0';
-	while (src[i] != '\0')
-		i++;
-	return (i);
+	ret[i] = 0;
+	free (str1);
+	return (ret);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	clearstack(char *stack)
 {
-	size_t	len1;
-	size_t	len2;
-	char	*s3;
+	int	i;
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	s3 = (char *)malloc(sizeof(char) * (len1 + len2 +1));
-	if (!s3)
-		return (NULL);
-	ft_strlcpy(s3, (char *)s1, len1 + 1);
-	ft_strlcpy(s3 + len1, (char *)s2, len2 + 1);
-	return (s3);
+	i = -1;
+	while (stack[++i])
+	{
+		if (stack[i] == '\n')
+		{
+			stack[i++] = 0;
+			break ;
+		}
+		stack[i] = 0;
+	}
+	return (i);
 }
