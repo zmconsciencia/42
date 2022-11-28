@@ -6,11 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:54:05 by jabecass          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/26 19:35:20 by jabecass         ###   ########.fr       */
-=======
-/*   Updated: 2022/11/24 17:26:17 by jabecass         ###   ########.fr       */
->>>>>>> 510217048a05f6ebde0cb1f5a8cf2ff2109a8b5e
+/*   Updated: 2022/11/28 13:02:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +20,6 @@ size_t	ft_strlen(const char *str)
 	if (!str)
 		return (0);
 	while (str[i] && str[i] != '\n')
-<<<<<<< HEAD
-		i++;
-	if (str[i] == '\n')
-=======
->>>>>>> 510217048a05f6ebde0cb1f5a8cf2ff2109a8b5e
 		i++;
 	if (str[i] == '\n')
 		i += 1;
@@ -61,28 +52,20 @@ char	*ft_strjoin(char *str1, char *str2)
 int	clearstack(char *stack)
 {
 	int	i;
-<<<<<<< HEAD
 	int	j;
 
 	j = -1;
-=======
-
->>>>>>> 510217048a05f6ebde0cb1f5a8cf2ff2109a8b5e
 	i = -1;
 	while (stack[++i])
 	{
 		if (stack[i] == '\n')
 		{
 			stack[i++] = 0;
-<<<<<<< HEAD
 			j = 0;
-=======
->>>>>>> 510217048a05f6ebde0cb1f5a8cf2ff2109a8b5e
 			break ;
 		}
 		stack[i] = 0;
 	}
-<<<<<<< HEAD
 	if (!j)
 	{
 		while (stack[i])
@@ -92,7 +75,4 @@ int	clearstack(char *stack)
 		}
 	}
 	return (j);
-=======
-	return (i);
->>>>>>> 510217048a05f6ebde0cb1f5a8cf2ff2109a8b5e
 }
