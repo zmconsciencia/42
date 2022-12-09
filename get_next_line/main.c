@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 10:49:41 by jabecass          #+#    #+#             */
-/*   Updated: 2022/12/09 20:36:50 by jabecass         ###   ########.fr       */
+/*   Created: 2022/12/09 20:33:08 by jabecass          #+#    #+#             */
+/*   Updated: 2022/12/09 23:02:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
-# endif
+int	main(void)
+{
+	int	fd;
+	char *line;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-
-char	*get_next_line(int fd);
-char	*ft_strjoin(char *str1, char *str2);
-size_t	ft_strlcpy(char *dest, const char *src, size_t size);
-size_t	ft_strlen(const char *str);
-int		clearstack(char *stack);
-
-#endif
+	fd = open("res", O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break;
+		printf("%s", line);
+		free(line);	
+	}
+	putchar('\n');
+	return(0);
+}
