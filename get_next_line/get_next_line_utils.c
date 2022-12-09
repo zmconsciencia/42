@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:54:05 by jabecass          #+#    #+#             */
-/*   Updated: 2022/12/09 23:03:47 by jabecass         ###   ########.fr       */
+/*   Updated: 2022/12/09 23:05:22 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ size_t	ft_strlen(const char *str)
 	if (!str)
 		return (0);
 	while (str[i] && str[i] != '\n')
-		i++;
-	if (str[i] == '\n')
 		i++;
 	if (str[i] == '\n')
 		i += 1;
