@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2022/12/14 16:20:07 by jabecass         ###   ########.fr       */
+/*   Created: 2022/12/14 15:58:06 by jabecass          #+#    #+#             */
+/*   Updated: 2022/12/14 15:59:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-void	*ft_memset(void *b, int c, size_t n)
-{
-	char	*p;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
 
-	p = (char *)b;
-	while (n > 0)
-	{
-		p[n - 1] = c;
-		n--;
-	}
-	return (b);
-}
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
+
+char	*get_next_line(int fd);
+char	*ft_strjoin(char *str1, char *str2);
+size_t	ft_strlen(const char *str);
+int		clearstack(char *stack);
+
+#endif

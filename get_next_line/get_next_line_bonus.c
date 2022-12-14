@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 20:33:08 by jabecass          #+#    #+#             */
-/*   Updated: 2022/12/09 23:02:59 by jabecass         ###   ########.fr       */
+/*   Created: 2022/12/14 15:57:38 by jabecass          #+#    #+#             */
+/*   Updated: 2022/12/14 16:06:51 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
+#include "get_next_line_bonus.h"
 
-int	main(void)
+char	*get_next_line(int fd)
 {
-	int	fd;
-	char *line;
+	char		*c;
+	static char	stack[1024][BUFFER_SIZE + 1];
+	size_t		i;
 
-	fd = open("res", O_RDONLY);
-	while (1)
+	i = -1;
+	if (BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break;
-		printf("%s", line);
-		free(line);	
+		while (stack[fd][++i])
+			stack[fd][i] = 0;
+		return (NULL);
 	}
-	putchar('\n');
-	return(0);
+	c = NULL;
+	while (*stack[fd] || read(fd, stack[fd], BUFFER_SIZE) > 0)
+	{
+		c = ft_strjoin(c, stack[fd]);
+		if (clearstack(stack[fd]) >= 0)
+			break ;
+	}
+	return (c);
 }
