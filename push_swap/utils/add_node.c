@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:50:45 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/17 02:06:36 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:49:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ void add_node(t_stack** root, int node)
 	if (new == NULL){
 		exit(1);
 	}
+	printf("finderror1\n");
 	new->next = NULL;
 	new->num = node;
-
+	
 	t_stack* curr = *root;
-	while(curr->next != NULL)
+	printf("finderror2\n");
+	while(curr)
 	{
+		
 		curr = curr->next;
+		printf("finderror3\n");
 	}
 	curr->next = new;
 }
