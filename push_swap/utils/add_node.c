@@ -6,31 +6,33 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:50:45 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/17 14:49:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:46:27 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void add_node(t_stack** root, int node)
+void add_node(t_stack **root, int node)
 {
-	t_stack* new = malloc(sizeof(t_stack));
-	if (new == NULL){
+	t_stack *new = malloc(sizeof(t_stack));
+	t_stack *temp = *root;
+	
+	if (!root)
+		return ;
+	
+	if (!new)
 		exit(1);
-	}
-	printf("finderror1\n");
+		
 	new->next = NULL;
 	new->num = node;
 	
-	t_stack* curr = *root;
-	printf("finderror2\n");
-	while(curr)
-	{
-		
-		curr = curr->next;
-		printf("finderror3\n");
+	if (temp){	
+		while(temp->next)
+			temp = temp->next;
+		temp->next = new;
 	}
-	curr->next = new;
+	else
+		*root = new;
 }
 
 void	print_lst(t_stack *a)
@@ -42,14 +44,15 @@ void	print_lst(t_stack *a)
 	}
 }
 
-int main(int ac, char **av)
+void	stackclear(t_stack *a)
 {
-	t_stack* stack_a = 0;
-	if (ac > 1)
+	t_stack	*temp;
+	if (!a)
+		return ;
+	while (a)
 	{
-		while(++av && av)
-		{
-			add_node(&stack_a, atoi(*av));
-		}
+		temp = a->next;
+		free(a);
+		a = temp;
 	}
 }
