@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:50:45 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/18 15:46:27 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:56:25 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@ void add_node(t_stack **root, int node)
 	
 	if (!root)
 		return ;
-	
 	if (!new)
 		exit(1);
-		
 	new->next = NULL;
 	new->num = node;
-	
 	if (temp){	
 		while(temp->next)
 			temp = temp->next;
