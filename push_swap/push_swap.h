@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:57:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/20 15:51:47 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:42:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_list
 {
 	int				num;
+	struct s_list	*prev;
 	struct s_list	*next;
 }	t_stack;
 
@@ -35,7 +36,5 @@ void		checkerrors(char **tab, t_stack **a);
 int			ft_isdigit(char *str);
 void		error_handle(char **tab, t_stack **a);
 int			ft_checkdoubles(t_stack *a, long int temp);
-
-
 
 #endif

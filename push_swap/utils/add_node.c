@@ -6,25 +6,28 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:50:45 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/20 15:56:25 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:49:12 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void add_node(t_stack **root, int node)
+void	add_node(t_stack **root, int node)
 {
-	t_stack *new = malloc(sizeof(t_stack));
-	t_stack *temp = *root;
-	
+	t_stack	*new;
+	t_stack	*temp;
+
+	new = malloc(sizeof(t_stack));
+	temp = *root;
 	if (!root)
 		return ;
 	if (!new)
 		exit(1);
 	new->next = NULL;
 	new->num = node;
-	if (temp){	
-		while(temp->next)
+	if (temp)
+	{	
+		while (temp->next)
 			temp = temp->next;
 		temp->next = new;
 	}
@@ -44,6 +47,7 @@ void	print_lst(t_stack *a)
 void	stackclear(t_stack *a)
 {
 	t_stack	*temp;
+
 	if (!a)
 		return ;
 	while (a)

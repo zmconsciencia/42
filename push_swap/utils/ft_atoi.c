@@ -6,13 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 01:23:16 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/18 19:23:40 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:43:22 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-
 
 long int	ft_atoi(const char *str)
 {
