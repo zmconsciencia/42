@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:43:30 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/20 17:46:54 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/22 00:29:34 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	error_handle(char **tab, t_stack **a)
 	int	i;
 
 	i = 0;
-	print_lst(*a);
+	//print_lst(*a);
 	write (2, "Error\n", 6);
 	while (tab[i])
 	{
