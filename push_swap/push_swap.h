@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:57:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/24 14:30:47 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:47:58 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ void		error_handle(char **tab, t_stack **a);
 int			ft_checkdoubles(t_stack *a, long int temp);
 void		swap(t_stack *list);
 void		push(t_stack **src, t_stack **dst);
+void		rotate(t_stack **head_ref);
+void		reverse_rotate(t_stack **head_ref);
+int			issorted(t_stack **a);
 
 #endif

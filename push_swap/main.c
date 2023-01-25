@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:38:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/24 14:34:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:47:37 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int	main(int ac, char **av)
 		print_lst(stack_a);
 		printf("B:\n");
 		print_lst(stack_b);
-		push(&stack_a, &stack_b);
-		swap(stack_a);
+		printf("%d\n", issorted(&stack_a));
+		/* push(&stack_a, &stack_b);
+		rotate(&stack_a);
+		swap(stack_a); */
+		//reverse_rotate(&stack_a);
 		printf("----------------\n");
 		printf("A:\n");
 		print_lst(stack_a);

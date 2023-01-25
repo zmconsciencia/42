@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:21:46 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/24 14:30:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:35:00 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,36 @@ void	push(t_stack **src, t_stack **dst)
 	if (*dst)
 		(*dst)->prev = tmp;
 	*dst = tmp;
+}
+
+void	rotate(t_stack **head_ref)
+{
+    if (*head_ref == NULL)
+        return;
+	
+    t_stack *current = *head_ref;
+    while (current->next != NULL)
+        current = current->next;
+
+    current->next = *head_ref;
+    (*head_ref)->prev = current;
+    *head_ref = (*head_ref)->next;
+    (*head_ref)->prev = NULL;
+    current->next->next = NULL;
+}
+
+void	reverse_rotate(t_stack **head_ref)
+{
+    if (*head_ref == NULL)
+        return;
+
+    t_stack *current = *head_ref;
+    while (current->next != NULL)
+        current = current->next;
+
+    current->next = *head_ref;
+    (*head_ref)->prev = current;
+    *head_ref = current;
+    (*head_ref)->prev->next = NULL;
+    (*head_ref)->prev = NULL;
 }
