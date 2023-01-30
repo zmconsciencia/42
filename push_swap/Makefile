@@ -1,6 +1,6 @@
 SOURCES = main.c
 
-SOURCESUTILS = ft_split.c ft_atoi.c add_node.c errors.c moves.c sort.c
+SOURCESUTILS = ft_split.c ft_atoi.c add_node.c errors.c moves.c sort.c cost.c cost_add.c
 
 SOURCESUTILSF = $(addprefix utils/, $(SOURCESUTILS))
 

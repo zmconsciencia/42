@@ -6,22 +6,19 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 16:42:19 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/30 16:51:41 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:33:56 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	issorted(t_stack **a)
+int	issorted(t_stack *a)
 {
-	t_stack	*curr;
-
-	curr = *a;
-	while (curr && curr->next)
+	while (a && a->next)
 	{
-		if (!(curr->num < curr->next->num))
+		if (!(a->num < a->next->num))
 			return (0);
-		curr = curr->next;
+		a = a->next;
 	}
 	return (1);
 }
@@ -31,7 +28,7 @@ void	sort3(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*c;
 
 	c = *stack_a;
-	if (!(issorted(&c)))
+	if (!(issorted(c)))
 	{
 		if (c->num > c->next->num && c->next->num > c->next->next->num)
 		{
@@ -60,6 +57,14 @@ void	sort2(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*c;
 
 	c = *stack_a;
-	if (!(issorted(&c)))
+	if (!(issorted(c)))
 		swap(*stack_a, *stack_b, 'a');
+}
+
+void	keep3(t_stack **stack_a, t_stack **stack_b)
+{
+	while(!issorted(*stack_a) && lstsize(*stack_a) > 3)
+		push(stack_a, stack_b, 'b');
+	if (!issorted(*stack_a))
+		sort3(stack_a, stack_b);
 }

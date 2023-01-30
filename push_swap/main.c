@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:38:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/30 16:56:32 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:22:28 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,21 @@ int	main(int ac, char **av)
 	{
 		while (++i < ac)
 			checkerrors(ft_split(av[i], ' '), &stack_a);
-		sort2(&stack_a, &stack_b);
+		printf("A:\n");
+		print_lst(stack_a);
+		printf("----------------\n");
+		printf("B:\n");
+		print_lst(stack_b);
+		printf("----------------\n");
+		keep3(&stack_a, &stack_b);
+		printf("----------------\n");
+		printf("A:\n");
+		print_lst(stack_a);
+		printf("----------------\n");
+		printf("B:\n");
+		print_lst(stack_b);
+		printf("----------------\n");
+		printf("%d\n", bestnei(stack_a, stack_b));
 		stackclear(stack_a);
 		stackclear(stack_b);
 	}

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:50:45 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/24 14:19:30 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:28:34 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,17 @@ void	stackclear(t_stack *a)
 		free(a);
 		a = temp;
 	}
+}
+
+int		lstsize(t_stack *a)
+{
+	int	i;
+
+	i = 0;
+	while (a)
+	{
+		i++;
+		a = a->next;
+	}
+	return (i);
 }

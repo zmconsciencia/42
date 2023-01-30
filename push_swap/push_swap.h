@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:57:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/30 16:52:49 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:21:58 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ void		swap(t_stack *a, t_stack *b, char c);
 void		push(t_stack **src, t_stack **dst, char c);
 void		rotate(t_stack **a, t_stack **b, char c);
 void		reverse_rotate(t_stack **a, t_stack **b, char c);
-int			issorted(t_stack **a);
+int			issorted(t_stack *a);
 void		sort3(t_stack **stack_a, t_stack **stack_b);
 void		sort2(t_stack **stack_a, t_stack **stack_b);
+void		keep3(t_stack **stack_a, t_stack **stack_b);
+int			lstsize(t_stack *a);
+int			bestnei(t_stack *a, t_stack *b);
 
 #endif
