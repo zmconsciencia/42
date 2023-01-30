@@ -6,22 +6,26 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:21:46 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/25 16:35:00 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:33:56 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	swap(t_stack *list)
+void	swap(t_stack *a, t_stack *b, char c)
 {
 	int		tmp;
 
-	tmp = list->num;
-	list->num = list->next->num;
-	list->next->num = tmp;
+	tmp = a->num;
+	a->num = a->next->num;
+	a->next->num = tmp;
+	if (c)
+		printf("s%c\n", c);
+	if (c == 's')
+		swap(b, a, 0);
 }
 
-void	push(t_stack **src, t_stack **dst)
+void	push(t_stack **src, t_stack **dst, char c)
 {	
 	t_stack	*tmp;
 
@@ -38,36 +42,45 @@ void	push(t_stack **src, t_stack **dst)
 	if (*dst)
 		(*dst)->prev = tmp;
 	*dst = tmp;
+	printf("p%c\n", c);
 }
 
-void	rotate(t_stack **head_ref)
+void	rotate(t_stack **a, t_stack **b, char c)
 {
-    if (*head_ref == NULL)
+    if (*a == NULL)
         return;
 	
-    t_stack *current = *head_ref;
+    t_stack *current = *a;
     while (current->next != NULL)
         current = current->next;
 
-    current->next = *head_ref;
-    (*head_ref)->prev = current;
-    *head_ref = (*head_ref)->next;
-    (*head_ref)->prev = NULL;
+    current->next = *a;
+    (*a)->prev = current;
+    *a = (*a)->next;
+    (*a)->prev = NULL;
     current->next->next = NULL;
+	if (c)
+		printf("r%c\n", c);
+	if (c == 'r')
+		rotate(b, a, 0);
 }
 
-void	reverse_rotate(t_stack **head_ref)
+void	reverse_rotate(t_stack **a, t_stack **b, char c)
 {
-    if (*head_ref == NULL)
+    if (*a == NULL)
         return;
 
-    t_stack *current = *head_ref;
+    t_stack *current = *a;
     while (current->next != NULL)
         current = current->next;
 
-    current->next = *head_ref;
-    (*head_ref)->prev = current;
-    *head_ref = current;
-    (*head_ref)->prev->next = NULL;
-    (*head_ref)->prev = NULL;
+    current->next = *a;
+    (*a)->prev = current;
+    *a = current;
+    (*a)->prev->next = NULL;
+    (*a)->prev = NULL;
+	if (c)
+		printf("rr%c\n", c);
+	if (c == 'r')
+		rotate(b, a, 0);
 }
