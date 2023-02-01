@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:57:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/30 21:21:58 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:41:50 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@ void		sort3(t_stack **stack_a, t_stack **stack_b);
 void		sort2(t_stack **stack_a, t_stack **stack_b);
 void		keep3(t_stack **stack_a, t_stack **stack_b);
 int			lstsize(t_stack *a);
-int			bestnei(t_stack *a, t_stack *b);
+t_stack		*best_neighbour(t_stack **stacka, t_stack **stackb);
+t_stack 	*lmax(t_stack *a);
+t_stack 	*lmin(t_stack **a);
+t_stack		*find_nearest(t_stack *to, t_stack *elem);
+int			min(int a, int b);
+int			max(int a, int b);
+int			min_array(int *arr);
+int			cost(t_stack **to, t_stack **from, t_stack *elem, int *path);
+int			bn_cost(t_stack **stacka, t_stack **curr);
+t_stack		*least_cost(t_stack **stacka, t_stack **stackb);
 
 #endif

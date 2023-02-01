@@ -6,27 +6,29 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:55:56 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/30 21:25:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:46:28 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int min(t_stack *a)
+t_stack *lmin(t_stack **a)
 {
 	t_stack	*min;
-	
-	min = a;
-	while(a)
+	t_stack	*curr;
+
+	min = *a;
+	curr = *a;
+	while (curr)
 	{
-		if (min->num > a->num)
-			min = a;
-		a = a->next;
+		if (curr->num < min->num)
+			min = curr;
+		curr = curr->next;
 	}
-	return (min->num);
+	return (min);
 }
 
-int max(t_stack *a)
+t_stack *lmax(t_stack *a)
 {
 	t_stack	*max;
 	
@@ -37,34 +39,69 @@ int max(t_stack *a)
 			max = a;
 		a = a->next;
 	}
-	return (max->num);
+	return (max);
 }
 
-int	bestnei(t_stack *a, t_stack *b)
+t_stack	*best_neighbour(t_stack **stacka, t_stack **stackb)
 {
-	int tmp;
+	t_stack	*ca;
+	t_stack	*best;
+	int		diff;
 
-	tmp = 0;
-	while (b)
+	diff = INT_MAX;
+	ca = *stacka;
+	best = 0;
+	while (ca)
 	{
-		while (a)
+		if (ca->num > (*stackb)->num && ca->num - (*stackb)->num < diff)
 		{
-			if (a->num > b->num)
-			{	
-				//printf("%d\n", a->num);
-				tmp = a->num - b->num;
-			}
-			a = a->next;
+			best = ca;
+			diff = ca->num - (*stackb)->num;
 		}
-		b = b->next;
+		ca = ca->next;
 	}
-	return (tmp);
+	if (!best)
+		best = lmin(stacka);
+	return (best);
 }
 
-/* int	cost(t_stack *curr, t_stack *a, t_stack *b)
+int	bn_cost(t_stack **stacka, t_stack **curr)
 {
-	int	i;
-	i = pos(curr, b);
-	if (i > lstsize(b) / 2)
+	int		bn_cost;
+	t_stack	*bn;
+
+	bn = best_neighbour(stacka, curr);
+	bn_cost = 0;
+	if (lstsize(bn) < lstsize(*stacka) / 2)
+		bn_cost = lstsize(bn);
+	else
+		bn_cost = lstsize(*stacka) - lstsize(bn);
+	return (bn_cost);
 }
- */
+
+t_stack	*least_cost(t_stack **stacka, t_stack **stackb)
+{
+	int		cost;
+	int		least_cost;
+	int		i;
+	t_stack	*curr;
+	t_stack	*least;
+
+	cost = 0;
+	least_cost = INT_MAX;
+	i = 0;
+	curr = *stackb;
+	while (curr && ++i)
+	{
+		cost = (i > lstsize(*stackb) / 2) * lstsize(curr) + \
+		(i <= lstsize(*stackb) / 2) * (lstsize(*stackb) - lstsize(curr));
+		cost += bn_cost(stacka, &curr);
+		if (cost < least_cost)
+		{
+			least_cost = cost;
+			least = curr;
+		}
+		curr = curr->next;
+	}
+	return (least);
+}

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 16:42:19 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/30 17:33:56 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:10:36 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	sort3(t_stack **stack_a, t_stack **stack_b)
 	{
 		if (c->num > c->next->num && c->next->num > c->next->next->num)
 		{
-			reverse_rotate(stack_a, stack_b, 'a');
-			reverse_rotate(stack_a, stack_b, 'a');
+			rotate(stack_a, stack_b, 'a');
 			swap(*stack_a, *stack_b, 'a');
 		}
 		else if (c->num > c->next->num && \
@@ -43,11 +42,11 @@ void	sort3(t_stack **stack_a, t_stack **stack_b)
 			swap(*stack_a, *stack_b, 'a');
 		else if (c->num < c->next->num && c->num > c->next->next->num)
 			reverse_rotate(stack_a, stack_b, 'a');
-		else if (c->num < c->next->num && c->num < c->next->next->num)
+		else if (c->num < c->next->num && c->num < c->next->next->num && \
+		c->next->num > c->next->next->num)
 		{
-			push(stack_a, stack_b, 'b');
 			swap(*stack_a, *stack_b, 'a');
-			push(stack_b, stack_a, 'a');
+			rotate(stack_a, stack_b, 'a');
 		}
 	}
 }
