@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:57:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/03 15:46:17 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/03 18:51:27 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ t_stack 	*lmax(t_stack *a);
 t_stack 	*lmin(t_stack **a);
 int			bn_cost(t_stack **stacka, t_stack **curr);
 t_stack		*least_cost(t_stack **stacka, t_stack **stackb);
-void	bst_to_top(t_stack **stacka, t_stack **stackb, t_stack *best, int flag);
+void	bst_to_top(t_stack **stacka, t_stack **stackb, t_stack *best, char c);
 void	sort_general(t_stack **stacka, t_stack **stackb);
 void	run_it(t_stack	**stack_a, t_stack **stack_b);
+long int	yo(t_stack *a);
+int	media(t_stack *a);
 
 #endif
