@@ -8,4 +8,12 @@ January 25th 2023
 	TO DO:
 	- Functions to sort stacks with less then 6 arguments;
 	- Funtions to find median value of the stack;
-	- Start working on a cost function; 
+	- Start working on a cost function;
+
+February 6th 2023
+
+-Fixed norm
+-Put my own printf
+
+	TO DO:
+	- Turn it in.

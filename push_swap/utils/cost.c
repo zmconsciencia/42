@@ -6,13 +6,13 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:55:56 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/01 17:46:28 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:23:33 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_stack *lmin(t_stack **a)
+t_stack	*lmin(t_stack **a)
 {
 	t_stack	*min;
 	t_stack	*curr;
@@ -28,12 +28,12 @@ t_stack *lmin(t_stack **a)
 	return (min);
 }
 
-t_stack *lmax(t_stack *a)
+t_stack	*lmax(t_stack *a)
 {
 	t_stack	*max;
-	
+
 	max = a;
-	while(a)
+	while (a)
 	{
 		if (max->num < a->num)
 			max = a;

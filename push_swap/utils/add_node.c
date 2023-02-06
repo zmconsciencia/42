@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:50:45 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/30 17:28:34 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:23:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_lst(t_stack *a)
 {
 	while (a)
 	{
-		printf("%d\n", a->num);
+		ft_printf("%d\n", a->num);
 		a = a->next;
 	}
 }
@@ -60,7 +60,7 @@ void	stackclear(t_stack *a)
 	}
 }
 
-int		lstsize(t_stack *a)
+int	lstsize(t_stack *a)
 {
 	int	i;
 
