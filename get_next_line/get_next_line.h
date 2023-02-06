@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:49:41 by jabecass          #+#    #+#             */
-/*   Updated: 2022/12/12 13:48:40 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:42:42 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 6
 # endif
 
 # include <unistd.h>

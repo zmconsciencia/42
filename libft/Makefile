@@ -6,21 +6,66 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRC = $(wildcard *.c)
+LIBFT_SRCS = ft_isalnum.c \
+				ft_lstiter.c \
+				ft_isalpha.c \
+				ft_putendl_fd.c \
+				ft_atoi.c \
+				ft_strdup.c \
+				ft_lstnew.c \
+				ft_strnstr.c \
+				ft_lstadd_front.c \
+				ft_isascii.c \
+				ft_memcpy.c \
+				ft_striteri.c \
+				ft_memchr.c \
+				ft_putnbr_fd.c \
+				ft_lstclear.c \
+				ft_memcmp.c \
+				ft_strncmp.c \
+				ft_putstr_fd.c \
+				ft_toupper.c \
+				ft_strlcpy.c \
+				ft_strjoin.c \
+				ft_strlcat.c \
+				ft_lstdelone.c \
+				ft_lstadd_back.c \
+				ft_isdigit.c \
+				ft_tolower.c \
+				ft_memset.c \
+				ft_strrchr.c \
+				ft_strlen.c \
+				ft_lstmap.c \
+				ft_bzero.c \
+				ft_strchr.c \
+				ft_isprint.c \
+				ft_substr.c \
+				ft_calloc.c \
+				ft_memmove.c \
+				ft_itoa.c \
+				ft_split.c \
+				ft_lstlast.c \
+				ft_strmapi.c \
+				ft_putchar_fd.c \
+				ft_lstsize.c \
+				ft_strtrim.c \
 
-OBJ = $(SRC:.c=.o)
+GNL_SRCS = get_next_line_bonus.c \
+				get_next_line_utils_bonus.c
 
-B = $(wildcard *.c)
+PRINTF_SRCS = ft_convs2.c \
+				ft_convs.c \
+				ft_printf.c 
 
-B_OBJ = $(B:.c=.o)
+LIBFT_OBJS = $(addprefix srcs/libft/, $(LIBFT_SRCS:=.o))
+PRINTF_OBJS = $(addprefix srcs/printf/, $(PRINTF_SRCS:=.o))
+GNL_OBJS = $(addprefix srcs/gnl/, $(GNL_SRCS:=.o))
+OBJS = ${LIBFT_OBJS} ${GNL_OBJS} ${PRINTF_OBJS}
 
 all:	$(NAME)
 
-bonus:	$(B_OBJ)
-			ar rcs $(NAME) $(B_OBJ)
-
-$(NAME):	$(OBJ)
-			ar rcs $(NAME) $(OBJ)
+$(NAME):	$(OBJS)
+			ar rcs $(NAME) $(OBJS)
 
 clean:
 			$(RM) $(OBJ) $(B_OBJ)
@@ -30,3 +75,6 @@ fclean:	clean
 
 re:	fclean $(NAME)
 
+.PHONY: all clean fclean re
+
+.SILENT: ${OBJS}
