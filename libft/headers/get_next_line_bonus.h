@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:58:06 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/19 16:37:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:48:15 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *str1, char *str2);
+char	*ft_stringjoin(char *str1, char *str2);
 size_t	ft_strlen(const char *str);
 int		clearstack(char *stack);
 

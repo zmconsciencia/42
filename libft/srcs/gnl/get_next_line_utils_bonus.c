@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:58:30 by jabecass          #+#    #+#             */
-/*   Updated: 2022/12/14 16:02:34 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:47:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	ft_strlen(const char *str)
 	return ((i));
 }
 
-char	*ft_strjoin(char *str1, char *str2)
+char	*ft_stringjoin(char *str1, char *str2)
 {
 	char	*ret;
 	size_t	i;

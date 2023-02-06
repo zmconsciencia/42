@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:57:38 by jabecass          #+#    #+#             */
-/*   Updated: 2022/12/14 16:06:51 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:48:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_next_line(int fd)
 	c = NULL;
 	while (*stack[fd] || read(fd, stack[fd], BUFFER_SIZE) > 0)
 	{
-		c = ft_strjoin(c, stack[fd]);
+		c = ft_stringjoin(c, stack[fd]);
 		if (clearstack(stack[fd]) >= 0)
 			break ;
 	}

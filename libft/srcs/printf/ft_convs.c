@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:25:35 by jabecass          #+#    #+#             */
-/*   Updated: 2022/11/14 13:56:35 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:52:14 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	ft_int_putstr(char *s)
 int	ft_int_putnbr(int n)
 {
 	ft_putnbr_fd(n, 1);
-	return (countdigits(n));
+	return (count(n));
 }
 
-size_t	countdigits(long int n)
+size_t	count(long int n)
 {
 	int	i;
 
@@ -66,5 +66,5 @@ int	int_putnbr(long int a)
 	}
 	else
 		ft_putchar_fd(n + '0', 1);
-	return (countdigits(n));
+	return (count(n));
 }

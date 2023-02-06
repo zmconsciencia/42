@@ -2,79 +2,84 @@ NAME = libft.a
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I headers
 
 RM = rm -f
 
-LIBFT_SRCS = ft_isalnum.c \
-				ft_lstiter.c \
-				ft_isalpha.c \
-				ft_putendl_fd.c \
-				ft_atoi.c \
-				ft_strdup.c \
-				ft_lstnew.c \
-				ft_strnstr.c \
-				ft_lstadd_front.c \
-				ft_isascii.c \
-				ft_memcpy.c \
-				ft_striteri.c \
-				ft_memchr.c \
-				ft_putnbr_fd.c \
-				ft_lstclear.c \
-				ft_memcmp.c \
-				ft_strncmp.c \
-				ft_putstr_fd.c \
-				ft_toupper.c \
-				ft_strlcpy.c \
-				ft_strjoin.c \
-				ft_strlcat.c \
-				ft_lstdelone.c \
-				ft_lstadd_back.c \
-				ft_isdigit.c \
-				ft_tolower.c \
-				ft_memset.c \
-				ft_strrchr.c \
-				ft_strlen.c \
-				ft_lstmap.c \
-				ft_bzero.c \
-				ft_strchr.c \
-				ft_isprint.c \
-				ft_substr.c \
-				ft_calloc.c \
-				ft_memmove.c \
-				ft_itoa.c \
-				ft_split.c \
-				ft_lstlast.c \
-				ft_strmapi.c \
-				ft_putchar_fd.c \
-				ft_lstsize.c \
-				ft_strtrim.c \
+LIBC = ar -rcs
 
-GNL_SRCS = get_next_line_bonus.c \
-				get_next_line_utils_bonus.c
+LIBFT_SRCS = srcs/libft/ft_isalnum.c \
+				srcs/libft/ft_lstiter.c \
+				srcs/libft/ft_isalpha.c \
+				srcs/libft/ft_putendl_fd.c \
+				srcs/libft/ft_atoi.c \
+				srcs/libft/ft_strdup.c \
+				srcs/libft/ft_lstnew.c \
+				srcs/libft/ft_strnstr.c \
+				srcs/libft/ft_lstadd_front.c \
+				srcs/libft/ft_isascii.c \
+				srcs/libft/ft_memcpy.c \
+				srcs/libft/ft_striteri.c \
+				srcs/libft/ft_memchr.c \
+				srcs/libft/ft_putnbr_fd.c \
+				srcs/libft/ft_lstclear.c \
+				srcs/libft/ft_memcmp.c \
+				srcs/libft/ft_strncmp.c \
+				srcs/libft/ft_putstr_fd.c \
+				srcs/libft/ft_toupper.c \
+				srcs/libft/ft_strlcpy.c \
+				srcs/libft/ft_strjoin.c \
+				srcs/libft/ft_strlcat.c \
+				srcs/libft/ft_lstdelone.c \
+				srcs/libft/ft_lstadd_back.c \
+				srcs/libft/ft_isdigit.c \
+				srcs/libft/ft_tolower.c \
+				srcs/libft/ft_memset.c \
+				srcs/libft/ft_strrchr.c \
+				srcs/libft/ft_strlen.c \
+				srcs/libft/ft_lstmap.c \
+				srcs/libft/ft_bzero.c \
+				srcs/libft/ft_strchr.c \
+				srcs/libft/ft_isprint.c \
+				srcs/libft/ft_substr.c \
+				srcs/libft/ft_calloc.c \
+				srcs/libft/ft_memmove.c \
+				srcs/libft/ft_itoa.c \
+				srcs/libft/ft_split.c \
+				srcs/libft/ft_lstlast.c \
+				srcs/libft/ft_strmapi.c \
+				srcs/libft/ft_putchar_fd.c \
+				srcs/libft/ft_lstsize.c \
+				srcs/libft/ft_strtrim.c
 
-PRINTF_SRCS = ft_convs2.c \
-				ft_convs.c \
-				ft_printf.c 
+GNL_SRCS = srcs/gnl/get_next_line_bonus.c \
+				srcs/gnl/get_next_line_utils_bonus.c
 
-LIBFT_OBJS = $(addprefix srcs/libft/, $(LIBFT_SRCS:=.o))
-PRINTF_OBJS = $(addprefix srcs/printf/, $(PRINTF_SRCS:=.o))
-GNL_OBJS = $(addprefix srcs/gnl/, $(GNL_SRCS:=.o))
+PRINTF_SRCS = srcs/printf/ft_convs2.c \
+				srcs/printf/ft_convs.c \
+				srcs/printf/ft_printf.c \
+
+HEADER = headers/libft.h headers/get_next_line_bonus.h headers/ft_printf.h
+
+LIBFT_OBJS = ${LIBFT_SRCS:.c=.o}
+GNL_OBJS = ${GNL_SRCS:.c=.o}
+PRINTF_OBJS = ${PRINTF_SRCS:.c=.o}
 OBJS = ${LIBFT_OBJS} ${GNL_OBJS} ${PRINTF_OBJS}
 
-all:	$(NAME)
+all: ${NAME}
 
-$(NAME):	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+${NAME}:	${OBJS}
+			@${LIBC} ${NAME} ${OBJS}
+			@echo "libft.a compiled"
 
 clean:
-			$(RM) $(OBJ) $(B_OBJ)
+		@${RM} ${OBJS}
 
 fclean:	clean
-			$(RM) $(NAME)
+		@${RM} ${NAME}
 
-re:	fclean $(NAME)
-
-.PHONY: all clean fclean re
+re:	fclean all
 
 .SILENT: ${OBJS}
+
+.PHONY: all clean fclean re
