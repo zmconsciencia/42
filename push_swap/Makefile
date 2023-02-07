@@ -3,14 +3,15 @@ SOURCES = main.c
 SOURCESUTILS = sort.c \
 				ft_atoi.c \
 				moves.c \
-				cost_add.c \
-				errors.c \
+				algorithmGeneral.c \
+				parse.c \
 				cost.c \
-				add_node.c \
+				listUtils.c \
 				ft_split.c \
 				ft_convs2.c \
 				ft_convs.c \
 				ft_printf.c \
+				listUtils-2.c \
 				additionals.c
 
 SOURCESUTILSF = $(addprefix utils/, $(SOURCESUTILS))
@@ -26,8 +27,8 @@ CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(OBJECTSUTILS) $(OBJECTSOPS) $(OBJECTSLIBFT) $(OBJECTSSORT)
-	@$(CC) $(CFLAGS) $(OBJECTS) $(OBJECTSUTILS) $(OBJECTSOPS) $(OBJECTSLIBFT) $(OBJECTSSORT) -o $(NAME)
+$(NAME): $(OBJECTS) $(OBJECTSUTILS)
+	@$(CC) $(CFLAGS) $(OBJECTS) $(OBJECTSUTILS) -o $(NAME)
 
 clean:
 	@rm -f *.o utils/*.o

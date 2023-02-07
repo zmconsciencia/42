@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cost_add.c                                         :+:      :+:    :+:   */
+/*   algorithmGeneral.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:58:36 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/06 17:22:48 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:41:41 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sort_general(t_stack **stacka, t_stack **stackb)
+void	sort_general(t_stack **stack_a, t_stack **stack_b)
 {
-	keep3(stacka, stackb);
-	while (*stackb)
+	keep3(stack_a, stack_b);
+	while (*stack_b)
 	{
-		bst_to_top(stacka, stackb, least_cost(stacka, stackb), 'b');
-		bst_to_top(stacka, stackb, best_neighbour(stacka, stackb), 'a');
-		push(stackb, stacka, 'a');
+		bst_to_top(stack_a, stack_b, least_cost(stack_a, stack_b), 'b');
+		bst_to_top(stack_a, stack_b, best_neighbour(stack_a, stack_b), 'a');
+		push(stack_b, stack_a, 'a');
 	}
-	bst_to_top(stacka, stackb, lmin(stacka), 'a');
+	bst_to_top(stack_a, stack_b, lmin(stack_a), 'a');
 }
 
 void	run_it(t_stack	**stack_a, t_stack **stack_b)
@@ -32,7 +32,9 @@ void	run_it(t_stack	**stack_a, t_stack **stack_b)
 			sort2(stack_a, stack_b);
 		else if (lstsize(*stack_a) == 3)
 			sort3(stack_a, stack_b);
-		else if (lstsize(*stack_a) > 3)
+		else if (lstsize(*stack_a) == 5 || lstsize(*stack_a) == 4)
+			sort5(stack_a, stack_b);
+		else if (lstsize(*stack_a) > 5)
 			sort_general(stack_a, stack_b);
 	}
 }
@@ -59,4 +61,18 @@ int	media(t_stack *a)
 	if (lstsize(a) > 0)
 		return (yo(a) / lstsize(a));
 	return (-1);
+}
+
+void	sort5(t_stack **stack_a, t_stack **stack_b)
+{
+	bst_to_top(stack_a, stack_b, lmin(stack_a), 'a');
+	push(stack_a, stack_b, 'b');
+	if (lstsize(*stack_a) == 4)
+	{
+		bst_to_top(stack_a, stack_b, lmin(stack_a), 'a');
+		push(stack_a, stack_b, 'b');
+	}
+	sort3(stack_a, stack_b);
+	while (lstsize(*stack_b))
+		push(stack_b, stack_a, 'a');
 }

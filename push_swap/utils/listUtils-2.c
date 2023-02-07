@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   listUtils-2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/15 16:38:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/07 13:45:48 by jabecass         ###   ########.fr       */
+/*   Created: 2023/02/07 15:17:26 by jabecass          #+#    #+#             */
+/*   Updated: 2023/02/07 15:25:52 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	main(int ac, char **av)
+t_stack	*lmin(t_stack **a)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	int		i;
+	t_stack	*min;
+	t_stack	*curr;
 
-	i = 0;
-	stack_a = 0;
-	stack_b = NULL;
-	if (ac > 1)
+	min = *a;
+	curr = *a;
+	while (curr)
 	{
-		while (++i < ac)
-			checkerrors(ft_split(av[i], ' '), &stack_a);
-		run_it(&stack_a, &stack_b);
-		stackclear(stack_a);
-		stackclear(stack_b);
+		if (curr->num < min->num)
+			min = curr;
+		curr = curr->next;
 	}
+	return (min);
+}
+
+t_stack	*lmax(t_stack *a)
+{
+	t_stack	*max;
+
+	max = a;
+	while (a)
+	{
+		if (max->num < a->num)
+			max = a;
+		a = a->next;
+	}
+	return (max);
 }
