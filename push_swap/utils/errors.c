@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:43:30 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/22 00:29:34 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/03 18:43:32 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isdigit(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
+		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '-'))
 			return (0);
 	}
 	return (1);
@@ -41,7 +41,6 @@ void	error_handle(char **tab, t_stack **a)
 	int	i;
 
 	i = 0;
-	//print_lst(*a);
 	write (2, "Error\n", 6);
 	while (tab[i])
 	{
