@@ -6,26 +6,26 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:43:30 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/07 15:15:24 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:45:49 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_isdigit(char *str)
+int ft_isdigit(char *str)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	while (str[++i])
 	{
-		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '-'))
+		if (!((str[i] >= '0' && str[i] <= '9')))
 			return (0);
 	}
 	return (1);
 }
 
-int	ft_checkdoubles(t_stack *a, long int temp)
+int ft_checkdoubles(t_stack *a, long int temp)
 {
 	while (a)
 	{
@@ -36,37 +36,41 @@ int	ft_checkdoubles(t_stack *a, long int temp)
 	return (1);
 }
 
-void	error_handle(char **tab, t_stack **a)
+void error_handle(char **tab, t_stack **a, int i)
 {
-	int	i;
-
-	i = 0;
-	write (2, "Error\n", 6);
-	while (tab[i])
+	write(2, "Error\n", 6);
+	while (tab && tab[i])
 	{
-		free (tab[i]);
+		free(tab[i]);
 		i++;
 	}
-	free (tab);
+	if (tab)
+		free(tab);
 	stackclear(*a);
-	exit (0);
+	exit(0);
 }
 
-void	checkerrors(char **tab, t_stack **a)
+void checkerrors(char **tab, t_stack **a)
 {
-	long int	tmp;
-	int			i;
+	long int tmp;
+	int i;
+	int	status;
 
 	i = -1;
+	status = 0;
 	while (tab[++i])
 	{
-		tmp = ft_atoi(tab[i]);
-		if (!ft_isdigit(tab[i]) || tmp > INT_MAX || \
-			tmp < INT_MIN || !ft_checkdoubles(*a, tmp))
-			error_handle(tab, a);
+		if (ft_strlen(tab[i]) == 1)
+		{
+			if (!ft_isdigit(tab[i]))
+				error_handle(tab, a, i);
+		}
+		tmp = ft_atoi(tab[i], &status);
+		if (status == 1 || !ft_checkdoubles(*a, tmp) || tmp > INT_MAX || tmp < INT_MIN)
+			error_handle(tab, a, i);
 		else
 			add_node(a, tmp);
-		free (tab[i]);
+		free(tab[i]);
 	}
-	free (tab);
+	free(tab);
 }

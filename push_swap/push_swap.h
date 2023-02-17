@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:57:13 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/07 15:40:51 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:32:37 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void		reverse_rotate(t_stack **a, t_stack **b, char c);
 
 //parse
 char		**ft_split(const char *s, char c);
-long int	ft_atoi(const char *str);
+long int	ft_atoi(const char *str, int *erro);
 void		checkerrors(char **tab, t_stack **a);
 int			ft_isdigit(char *str);
-void		error_handle(char **tab, t_stack **a);
+void		error_handle(char **tab, t_stack **a, int i);
 int			ft_checkdoubles(t_stack *a, long int temp);
 
 //sort

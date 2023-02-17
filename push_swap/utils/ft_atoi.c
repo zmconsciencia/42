@@ -6,13 +6,13 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 01:23:16 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/20 17:43:22 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:03:11 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-long int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str, int *erro)
 {
 	long int	i;
 	long int	sign;
@@ -34,5 +34,7 @@ long int	ft_atoi(const char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
+	if (str[i] != '\0')
+		*erro = 1;
 	return (res * sign);
 }
