@@ -26,6 +26,8 @@ int	main(int ac, char **av)
 		while (++i < ac)
 			checkerrors(ft_split(av[i], ' '), &stack_a);
 		run_it(&stack_a, &stack_b);
+		if (!issorted(stack_a))
+			run_it(&stack_a, &stack_b);
 		stackclear(stack_a);
 		stackclear(stack_b);
 	}

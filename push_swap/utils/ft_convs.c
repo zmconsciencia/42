@@ -51,7 +51,7 @@ size_t	countdigits(long int n)
 
 int	int_putnbr(long int a)
 {
-	unsigned int	n;
+	int	n;
 
 	n = (unsigned int)a;
 	if (n < 0)

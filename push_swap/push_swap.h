@@ -58,6 +58,7 @@ void		keep3(t_stack **stack_a, t_stack **stack_b);
 void		sort5(t_stack **stack_a, t_stack **stack_b);
 void		sort_general(t_stack **stack_a, t_stack **stack_b);
 void		run_it(t_stack	**stack_a, t_stack **stack_b);
+void		min_top(t_stack **a, t_stack **b);
 
 //cost
 void		bst_to_top(t_stack **a, t_stack **b, t_stack *best, char c);

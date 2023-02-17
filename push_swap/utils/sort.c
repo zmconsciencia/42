@@ -73,6 +73,8 @@ void	keep3(t_stack **stack_a, t_stack **stack_b)
 		else
 			rotate(stack_a, stack_b, 'a');
 	}
+	if (!issorted(*stack_a))
+		sort3(stack_a, stack_b);
 }
 
 void	bst_to_top(t_stack **a, t_stack **b, t_stack *best, char c)

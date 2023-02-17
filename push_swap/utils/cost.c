@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cost.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecurrss <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 17:55:56 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/07 15:31:01 by jabecass         ###   ########.fr       */
+/*   Created: 2023/02/07 16:00:02 by jabecass          #+#    #+#             */
+/*   Updated: 2023/02/15 11:19:39 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,21 @@ t_stack	*least_cost(t_stack **stack_a, t_stack **stack_b)
 		curr = curr->next;
 	}
 	return (least);
+}
+
+void	min_top(t_stack **a, t_stack **b)
+{
+	int	temp;
+
+	temp = lmin(a)->num;
+	if (lstsize(*a) - lstsize(lmin(a)) < lstsize(lmin(a)))
+	{
+		while ((*a)->num != temp)
+			rotate(a, b, 'a');
+	}
+	else
+	{
+		while ((*a)->num != temp)
+			reverse_rotate(a, b, 'a');
+	}
 }

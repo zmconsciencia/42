@@ -21,7 +21,7 @@ void	sort_general(t_stack **stack_a, t_stack **stack_b)
 		bst_to_top(stack_a, stack_b, best_neighbour(stack_a, stack_b), 'a');
 		push(stack_b, stack_a, 'a');
 	}
-	bst_to_top(stack_a, stack_b, lmin(stack_a), 'a');
+	min_top(stack_a, stack_b);
 }
 
 void	run_it(t_stack	**stack_a, t_stack **stack_b)
@@ -65,11 +65,11 @@ int	media(t_stack *a)
 
 void	sort5(t_stack **stack_a, t_stack **stack_b)
 {
-	bst_to_top(stack_a, stack_b, lmin(stack_a), 'a');
+	min_top(stack_a, stack_b);
 	push(stack_a, stack_b, 'b');
 	if (lstsize(*stack_a) == 4)
 	{
-		bst_to_top(stack_a, stack_b, lmin(stack_a), 'a');
+		min_top(stack_a, stack_b);
 		push(stack_a, stack_b, 'b');
 	}
 	sort3(stack_a, stack_b);
