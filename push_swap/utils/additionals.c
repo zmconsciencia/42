@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:14:41 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/06 16:52:09 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:36:17 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

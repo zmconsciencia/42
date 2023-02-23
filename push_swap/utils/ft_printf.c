@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:40:48 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/06 16:52:27 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:36:01 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 size_t	conversions(va_list args, char c)
 {

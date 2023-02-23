@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:17:26 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/07 15:25:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:36:06 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 t_stack	*lmin(t_stack **a)
 {

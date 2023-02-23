@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:07:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/01/20 17:49:19 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:36:04 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 static int	wdcount(char const *s, char c)
 {

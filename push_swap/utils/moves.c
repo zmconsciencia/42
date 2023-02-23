@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:21:46 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/06 17:21:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:36:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	swap(t_stack *a, t_stack *b, char c)
 {
