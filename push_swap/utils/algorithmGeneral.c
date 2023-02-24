@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:58:36 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/07 15:41:41 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:35:37 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	sort_general(t_stack **stack_a, t_stack **stack_b)
 {

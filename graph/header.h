@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/24 22:39:50 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/24 23:40:36 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ typedef struct cordenadas {
 	int	x;
 	int	y;
 }	coords;
-
 
 #endif

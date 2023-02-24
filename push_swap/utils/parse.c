@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:43:30 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/17 14:45:49 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:32:00 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 int ft_isdigit(char *str)
 {
@@ -47,7 +47,7 @@ void error_handle(char **tab, t_stack **a, int i)
 	if (tab)
 		free(tab);
 	stackclear(*a);
-	exit(0);
+	exit(1);
 }
 
 void checkerrors(char **tab, t_stack **a)
@@ -58,6 +58,8 @@ void checkerrors(char **tab, t_stack **a)
 
 	i = -1;
 	status = 0;
+	if (!tab)
+		exit(1);
 	while (tab[++i])
 	{
 		if (ft_strlen(tab[i]) == 1)

@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:00:02 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/15 11:19:39 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:35:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 t_stack	*best_neighbour(t_stack **stack_a, t_stack **stack_b)
 {

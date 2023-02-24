@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:56:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/06 16:52:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:35:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 size_t	ft_puthexa(long unsigned int n, int base)
 {

@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:25:35 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/06 16:52:14 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:35:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 int	ft_int_putchar(char c)
 {

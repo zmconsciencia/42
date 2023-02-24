@@ -6,11 +6,11 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 16:42:19 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/06 17:16:34 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 09:32:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 int	issorted(t_stack *a)
 {
