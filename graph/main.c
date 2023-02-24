@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/20 22:34:38 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/23 10:26:15 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	put_block(t_data *data, int starting_pixel, int size_x, int size_y, int color)
+void	put_block(t_data *data, coords starting_point, coords size, int color)
 {
 	int a;
 	int b;
@@ -39,7 +39,6 @@ void	put_block(t_data *data, int starting_pixel, int size_x, int size_y, int col
 int	main(void)
 {
 	t_data	img;
-	t_data	img2;
 	void	*mlx;
 	void	*mlx_win;
 	int		starting_point;
@@ -50,15 +49,12 @@ int	main(void)
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Graph");
 	img.img = mlx_new_image(mlx, 1920, 1080);
-	img2.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,\
-		&img.endian);
-	img2.addr = mlx_get_data_addr(img2.img, &img.bits_per_pixel, &img.line_length,\
 		&img.endian);
 	put_block(&img, starting_point, size, size, RED);
     starting_point += size + 5;
-    put_block(&img2, starting_point, size, size, WHITE);
+	size += starting_point;
+    put_block(&img, starting_point, size, size, WHITE);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_put_image_to_window(mlx, mlx_win, img2.img, 0, 0);
 	mlx_loop(mlx);
 }
