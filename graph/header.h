@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/20 21:59:05 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/02/24 22:39:50 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ typedef struct s_data {
 	int		line_length;
 	int		endian;
 }	t_data;
+
+typedef struct cordenadas {
+	int	x;
+	int	y;
+}	coords;
 
 
 #endif
