@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/02/24 23:40:36 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:56:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,45 @@
 #  define PURPLE 0x00000033	
 #  define WHITE 0x00FFFFFF
 
+#  define LEFT 65361
+#  define DOWN 65364
+#  define UP 65362
+#  define RIGHT 65363
 
 #include "mlx_linux/mlx.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-typedef struct s_data {
-	void	*img;
+typedef struct s_win {
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int		height;
+	int		width;
+}	t_win;
+
+typedef struct s_img {
+	t_win	win;
+	void	*img_ptr;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		h;
+	int		w;
+	int		bpp;
 	int		endian;
-}	t_data;
+	int		line_len;
+}		t_img;
 
-typedef struct cordenadas {
-	int	x;
-	int	y;
-}	coords;
+typedef struct s_piece{
+	unsigned short int	x;
+	unsigned short int	y;
+	t_img			gordo;
+} t_piece;
+
+typedef	struct tudo{
+	t_win		window;
+	t_img		image;
+	t_piece		piece;
+	char		*path;
+}	all;
 
 #endif
