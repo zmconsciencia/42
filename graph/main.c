@@ -6,11 +6,20 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/03 17:06:42 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:25:26 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	paint_icon(t_img *image, int x, int y);
+
+all	*data()
+{
+	static all data;
+	
+	return (&data);
+}
 
 t_win	new_program(int w, int h, char *str)
 {
@@ -24,16 +33,26 @@ void	my_mlx_pixel_put(t_img data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data.addr + (y * data.line_len + x * (data.bpp / 8));
-	*(unsigned int*)dst = color;
+	if (-16777216 != color)
+	{
+		dst = data.addr + (y * data.line_len + x * (data.bpp / 8));
+		*(unsigned int*)dst = color;
+	}
 }
 
-t_img	new_img(int w, int h, t_win window)
+int	my_mlx_pixel_get(t_img data, int x, int y)
+{
+	char	*dst;
+
+	dst = data.addr + (y * data.line_len + x * (data.bpp / 8));
+	return (*(unsigned int*)dst);
+}
+
+t_img	new_img(int w, int h)
 {
 	t_img	image;
 
-	image.win = window;
-	image.img_ptr = mlx_new_image(window.mlx_ptr, w, h);
+	image.img_ptr = mlx_new_image(data()->window.mlx_ptr, w, h);
 	image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp),
 			&(image.line_len), &(image.endian));
 	image.w = w;
@@ -41,8 +60,11 @@ t_img	new_img(int w, int h, t_win window)
 	return (image);
 }
 
-void	paint_black(int w, int h, t_img data)
+void	paint_floor(int w, int h)
 {
+	t_img	image;
+	
+	image = data()->image;
 	int i;
 	int j = 0;
 	while (j < h)
@@ -50,51 +72,83 @@ void	paint_black(int w, int h, t_img data)
 		i = 0;
 		while (i < w)
 		{
-			my_mlx_pixel_put(data, i, j, BLACK);
+			my_mlx_pixel_put(image, i, j, PINK);
 			i++;
 		}
 		j++;
 	}
-	printf("Ola\n");
+	paint_icon(&data()->pice, data()->piece.x, data()->piece.y);
+	mlx_put_image_to_window(data()->window.mlx_ptr, data()->window.win_ptr, image.img_ptr, 0, 0);
 }
 
-int	move(int key_pressed, all *new)
+void	paint_icon(t_img *image, int x, int y)
+{	
+	int i = 0;
+	int j = 0;
+	
+	
+	while (j < image->h)
+	{
+		i = 0;
+		while (i < image->w)
+		{
+			my_mlx_pixel_put(data()->image, x + i, y + j, my_mlx_pixel_get(*image, i, j));
+			i++;
+		}
+		j++;
+	}
+}
+
+void	load_icon(char *path)
 {
-	if (key_pressed == RIGHT)
-		(*new).piece.x += 10;
-	else if (key_pressed == DOWN)
-		(*new).piece.y += 10;
-	else if (key_pressed == LEFT)
-		(*new).piece.x -= 10;
-	else if (key_pressed == UP)
-		(*new).piece.y -= 10;
-	paint_black(300, 300, new->image);
-	mlx_put_image_to_window(new->window.mlx_ptr, new->window.win_ptr, new->image.img_ptr, 0, 0);
+
+	data()->pice.img_ptr = mlx_xpm_file_to_image(data()->window.mlx_ptr, path, &data()->pice.w, &data()->pice.h);
+	data()->pice.addr = mlx_get_data_addr(data()->pice.img_ptr, &(data()->pice.bpp),
+			&(data()->pice.line_len), &(data()->pice.endian));
+}
+
+int	move(int key_pressed)
+{
+	if (key_pressed == XK_d)
+		data()->piece.x += 16;
+	else if (key_pressed == XK_s)
+		data()->piece.y += 16;
+	else if (key_pressed == XK_a)
+		data()->piece.x -= 16;
+	else if (key_pressed == XK_w)
+		data()->piece.y -= 16;
+	paint_floor(300, 300);
 	return (0);
 }
 
 int     exit_tutorial(t_win *window)
 {
 	if (window)
+	{
+		mlx_destroy_image(data()->window.mlx_ptr, data()->image.img_ptr);
 		mlx_destroy_window (window->mlx_ptr, window->win_ptr);
+	}
 	exit(1);
+}
+
+void	initialize()
+{
+	data()->window = new_program(300, 300, "so_long");
+	if(!data()->window.mlx_ptr || !data()->window.win_ptr)
+		exit(1);
+	data()->image = new_img(300, 300);
+	data()->piece.x = 5;
+	data()->piece.y = 5;
+	load_icon("chess-pieces/piece1.xpm");
+	printf("%i\n", my_mlx_pixel_get(data()->pice, 0, 0));
+	paint_floor(300, 300);
+	mlx_hook(data()->window.win_ptr, 2, 1L<<0, move, data());
+	mlx_hook(data()->window.win_ptr, 17, 0, exit_tutorial, data());
+	mlx_loop(data()->window.mlx_ptr);
 }
 
 int	main()
 {
-	t_img	pix;
-	all		new;
-	char	*relative_path = "./chess-pieces/piece1.xpm";
-	
-	new.window = new_program(300, 300, "First");
-	if(!new.window.mlx_ptr || !new.window.win_ptr)
-		return (1);
-	pix = new_img(300, 300, new.window);
-	pix.img_ptr = mlx_xpm_file_to_image(new.window.mlx_ptr, relative_path, &pix.w, &pix.h);
-	pix.addr = mlx_get_data_addr(pix.img_ptr, &pix.bpp, &pix.line_len, &pix.endian);
-	mlx_put_image_to_window(new.window.mlx_ptr, new.window.win_ptr, pix.img_ptr, 0, 0);
-	mlx_hook(new.window.win_ptr, 2, 1L<<0, move, &new);
-	mlx_hook(new.window.win_ptr, 17, 0, exit_tutorial, &new);
-	mlx_loop(new.window.mlx_ptr);
+	initialize();
 	return (0);
 }

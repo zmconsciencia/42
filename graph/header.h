@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/03 16:56:29 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:00:05 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #  define BLACK 0x00000000
 #  define PURPLE 0x00000033	
 #  define WHITE 0x00FFFFFF
+#  define PINK 14326936
 
 #  define LEFT 65361
 #  define DOWN 65364
@@ -31,6 +32,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <X11/keysym.h>
+#include <X11/X.h>
+#include <X11/Xlib.h>
 
 typedef struct s_win {
 	void	*mlx_ptr;
@@ -40,7 +44,6 @@ typedef struct s_win {
 }	t_win;
 
 typedef struct s_img {
-	t_win	win;
 	void	*img_ptr;
 	char	*addr;
 	int		h;
@@ -59,6 +62,7 @@ typedef struct s_piece{
 typedef	struct tudo{
 	t_win		window;
 	t_img		image;
+	t_img		pice;
 	t_piece		piece;
 	char		*path;
 }	all;
