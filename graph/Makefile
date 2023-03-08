@@ -1,6 +1,6 @@
 SOURCES = main.c
 
-SOURCESUTILS = 
+SOURCESUTILS = mlx_utils.c
 
 SOURCESUTILSF = $(addprefix utils/, $(SOURCESUTILS))
 
@@ -9,13 +9,13 @@ OBJECTS = $(SOURCES:.c=.o)
 OBJECTSUTILS = $(SOURCESUTILSF:.c=.o)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_Linux -O3 -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_Linux -Iincs -O3 -c $< -o $@
 
-NAME = graph
+NAME = so_long
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g -Iincs -Imlx_Linux
 
 all: $(NAME)
 

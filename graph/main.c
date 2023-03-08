@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/07 19:25:26 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:36:41 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,11 @@
 
 void	paint_icon(t_img *image, int x, int y);
 
-all	*data()
+t_data	*data()
 {
-	static all data;
+	static t_data data;
 	
 	return (&data);
-}
-
-t_win	new_program(int w, int h, char *str)
-{
-	void	*mlx_ptr;
-
-	mlx_ptr = mlx_init();
-	return((t_win) {mlx_ptr, mlx_new_window(mlx_ptr, w, h, str), w, h});
-}
-
-void	my_mlx_pixel_put(t_img data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (-16777216 != color)
-	{
-		dst = data.addr + (y * data.line_len + x * (data.bpp / 8));
-		*(unsigned int*)dst = color;
-	}
-}
-
-int	my_mlx_pixel_get(t_img data, int x, int y)
-{
-	char	*dst;
-
-	dst = data.addr + (y * data.line_len + x * (data.bpp / 8));
-	return (*(unsigned int*)dst);
-}
-
-t_img	new_img(int w, int h)
-{
-	t_img	image;
-
-	image.img_ptr = mlx_new_image(data()->window.mlx_ptr, w, h);
-	image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp),
-			&(image.line_len), &(image.endian));
-	image.w = w;
-	image.h = h;
-	return (image);
 }
 
 void	paint_floor(int w, int h)
@@ -101,7 +62,6 @@ void	paint_icon(t_img *image, int x, int y)
 
 void	load_icon(char *path)
 {
-
 	data()->pice.img_ptr = mlx_xpm_file_to_image(data()->window.mlx_ptr, path, &data()->pice.w, &data()->pice.h);
 	data()->pice.addr = mlx_get_data_addr(data()->pice.img_ptr, &(data()->pice.bpp),
 			&(data()->pice.line_len), &(data()->pice.endian));
@@ -109,26 +69,28 @@ void	load_icon(char *path)
 
 int	move(int key_pressed)
 {
-	if (key_pressed == XK_d)
+	if (key_pressed == XK_d || key_pressed == XK_Right)
 		data()->piece.x += 16;
-	else if (key_pressed == XK_s)
+	else if (key_pressed == XK_s || key_pressed == XK_Down)
 		data()->piece.y += 16;
-	else if (key_pressed == XK_a)
+	else if (key_pressed == XK_a || key_pressed == XK_Left)
 		data()->piece.x -= 16;
-	else if (key_pressed == XK_w)
+	else if (key_pressed == XK_w || key_pressed == XK_Up)
 		data()->piece.y -= 16;
 	paint_floor(300, 300);
 	return (0);
 }
 
-int     exit_tutorial(t_win *window)
+int		map_name(char *map)
 {
-	if (window)
-	{
-		mlx_destroy_image(data()->window.mlx_ptr, data()->image.img_ptr);
-		mlx_destroy_window (window->mlx_ptr, window->win_ptr);
-	}
-	exit(1);
+	int	i;
+
+	i = -1;
+	while (map[++i])
+		 ;
+	if (map[i - 1] != 'r' && map[i - 2] != 'e' && map[i - 3] != 'b')
+		return (0);
+	return (1);
 }
 
 void	initialize()
@@ -140,15 +102,20 @@ void	initialize()
 	data()->piece.x = 5;
 	data()->piece.y = 5;
 	load_icon("chess-pieces/piece1.xpm");
-	printf("%i\n", my_mlx_pixel_get(data()->pice, 0, 0));
 	paint_floor(300, 300);
 	mlx_hook(data()->window.win_ptr, 2, 1L<<0, move, data());
 	mlx_hook(data()->window.win_ptr, 17, 0, exit_tutorial, data());
 	mlx_loop(data()->window.mlx_ptr);
 }
 
-int	main()
+int	main(int ac, char **av)
 {
-	initialize();
+	if (ac == 2)
+	{
+		if (map_checker(av[1]))
+			printf("Invalid map name\n");
+		else
+			initialize();
+	}
 	return (0);
 }
