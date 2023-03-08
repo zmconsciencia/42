@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"ranges": "c",
+		"utility": "c",
+		"random": "c",
+		"*.tcc": "c"
+	}
+}
