@@ -6,36 +6,36 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/10 16:18:47 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:31:07 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
 
-#  define LIGHT_BLUE 0x0099FFFF
-#  define YELLOW 0x00FFFF00
-#  define RED 0x00FF0000
-#  define BLUE 0x000033FF
-#  define GREEN 0x0000CC00
-#  define BLACK 0x00000000
-#  define PURPLE 0x00000033	
-#  define WHITE 0x00FFFFFF
-#  define PINK 14326936
+# define LIGHT_BLUE 0x0099FFFF
+# define YELLOW 0x00FFFF00
+# define RED 0x00FF0000
+# define BLUE 0x000033FF
+# define GREEN 0x0000CC00
+# define BLACK 0x00000000
+# define PURPLE 0x00000033	
+# define WHITE 0x00FFFFFF
+# define PINK 14326936
 
-#  define LEFT 65361
-#  define DOWN 65364
-#  define UP 65362
-#  define RIGHT 65363
+# define DOWN 65364
+# define UP 65362
+# define RIGHT 65363
+# define LEFT 65361
 
-#include "../mlx_linux/mlx.h"
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <X11/keysym.h>
-#include <X11/X.h>
-#include <X11/Xlib.h>
+# include "../mlx_linux/mlx.h"
+# include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/Xlib.h>
 
 typedef struct s_win {
 	void	*mlx_ptr;
@@ -93,5 +93,6 @@ int	border_check(char **map);
 void	ft_putstr_fd(char *s, int fd);
 int map_check(char **map, char *name);
 int same_size(char **map);
+int     escape(int keycode, void *param);
 
 #endif
