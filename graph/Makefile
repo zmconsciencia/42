@@ -1,6 +1,10 @@
 SOURCES = main.c
 
-SOURCESUTILS = mlx_utils.c
+SOURCESUTILS =	mlx_utils.c \
+				map.c \
+				map_check.c \
+				additionals.c
+
 
 SOURCESUTILSF = $(addprefix utils/, $(SOURCESUTILS))
 
@@ -26,6 +30,6 @@ clean:
 	@rm -f *.o utils/*.o
 
 fclean: clean
-	@rm -f push_swap
+	@rm -f so_long
 
 re: fclean all

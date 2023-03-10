@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/08 16:14:34 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:18:47 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 #include "../mlx_linux/mlx.h"
 #include <string.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <X11/keysym.h>
@@ -84,5 +85,13 @@ int		move(int key_pressed);
 int		exit_tutorial(t_win *window);
 void	initialize();
 t_data	*data();
+int		map_name(char *map);
+int	wall_check(char **map);
+int	ceiling_floor_check(char **map);
+int	count_lines(char **map);
+int	border_check(char **map);
+void	ft_putstr_fd(char *s, int fd);
+int map_check(char **map, char *name);
+int same_size(char **map);
 
 #endif

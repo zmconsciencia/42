@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/08 16:36:41 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:29:21 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,6 @@ int	move(int key_pressed)
 	return (0);
 }
 
-int		map_name(char *map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		 ;
-	if (map[i - 1] != 'r' && map[i - 2] != 'e' && map[i - 3] != 'b')
-		return (0);
-	return (1);
-}
-
 void	initialize()
 {
 	data()->window = new_program(300, 300, "so_long");
@@ -110,11 +98,11 @@ void	initialize()
 
 int	main(int ac, char **av)
 {
+	char *matrix[] = {"111","101","111", NULL};
+	
 	if (ac == 2)
 	{
-		if (map_checker(av[1]))
-			printf("Invalid map name\n");
-		else
+		if (map_check(matrix, av[1]))
 			initialize();
 	}
 	return (0);
