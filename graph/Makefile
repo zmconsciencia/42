@@ -19,7 +19,7 @@ NAME = so_long
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g -Iincs -Imlx_Linux
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -Iincs -Imlx_Linux
 
 all: $(NAME)
 

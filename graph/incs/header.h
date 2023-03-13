@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/10 19:31:07 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/11 10:54:48 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,16 @@ typedef struct s_piece{
 	t_img			gordo;
 } t_piece;
 
-typedef struct s_map {
+typedef struct s_map{
 	char	**map;
-	int		width;
-	int		height;
+	int		map_lines;
+	int		map_elem;
+	int		p;
+	int		e;
+	int		c;
+	int		p_double;
+	int		e_double;
+	int		c_double;
 }	t_map;
 
 typedef	struct s_data{
@@ -72,6 +78,7 @@ typedef	struct s_data{
 	t_img		pice;
 	t_piece		piece;
 	char		*path;
+	t_map		map;
 }	t_data;
 
 t_win	new_program(int w, int h, char *str);
@@ -93,6 +100,8 @@ int	border_check(char **map);
 void	ft_putstr_fd(char *s, int fd);
 int map_check(char **map, char *name);
 int same_size(char **map);
-int     escape(int keycode, void *param);
+int	line_count(char **map);
+char	**load_map_zico(char **map, int fd, int line_count);
+int	map_checker(char *map_path);
 
 #endif
