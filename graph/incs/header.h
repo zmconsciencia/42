@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/11 10:54:48 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:16:04 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define RIGHT 65363
 # define LEFT 65361
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
 # include "../mlx_linux/mlx.h"
 # include <string.h>
 # include <unistd.h>
@@ -36,6 +40,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <X11/Xlib.h>
+# include <fcntl.h>
 
 typedef struct s_win {
 	void	*mlx_ptr;
@@ -92,16 +97,20 @@ int		move(int key_pressed);
 int		exit_tutorial(t_win *window);
 void	initialize();
 t_data	*data();
-int		map_name(char *map);
+int		map_name(char *pathname);
 int	wall_check(char **map);
 int	ceiling_floor_check(char **map);
 int	count_lines(char **map);
 int	border_check(char **map);
 void	ft_putstr_fd(char *s, int fd);
-int map_check(char **map, char *name);
+int map_check(char **map);
 int same_size(char **map);
 int	line_count(char **map);
 char	**load_map_zico(char **map, int fd, int line_count);
 int	map_checker(char *map_path);
+size_t	ft_strlen(const char *str);
+char	*ft_strjoin(char *str1, char *str2);
+int	clearstack(char *stack);
+char	*get_next_line(int fd);
 
 #endif

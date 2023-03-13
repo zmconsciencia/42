@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:47:20 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/10 15:47:34 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:38:21 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,21 @@ int	ceiling_floor_check(char **map)
 	int	n;
 	int i;
 	int	j;
+	int	k;
 
 	n = count_lines(map);
 	i = 0;
 	j = 0;
+	k = 0;
+	while (map[0][k])
+		k++;
 	while (map[j])
 	{
 		if (j == 0 || j == n - 1)
 		{
-			while (map[j][i])
+			while (map[j][i] && i < k - 1)
 			{
-				if (map[j][i] != '1')
+				if (map[j][i] != '1' || map[j][k - 1] != '\n')
 					return (0);
 				i++;
 			}
@@ -61,7 +65,7 @@ int wall_check(char **map)
 		k++;
 	while (map[j])
 	{
-		if (map[j][0] != '1' || map[j][k - 1] != '1')
+		if (map[j][0] != '1' || map[j][k - 2] != '1')
 			return (0);
 		j++;
 	}
@@ -82,14 +86,18 @@ int	border_check(char **map)
 	return (1);
 }
 
-int		map_name(char *map)
+int		map_name(char *pathname)
 {
 	int	i;
+	int	fd;
 
 	i = -1;
-	while (map[++i])
+	fd = 0;
+	while (pathname[++i])
 		 ;
-	if (map[i - 1] != 'r' && map[i - 2] != 'e' && map[i - 3] != 'b')
+	if (pathname[i - 1] != 'r' && pathname[i - 2] != 'e' && pathname[i - 3] != 'b' && pathname[i - 4] != '.')
 		return (0);
-	return (1);
+	else
+		fd = open(pathname, O_RDONLY);
+	return (fd);
 }
