@@ -6,32 +6,39 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:51:39 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/13 14:41:09 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:00:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
+int	line_size(char *map)
+{
+	int	i;
+
+	i = 0;
+	while(map[i])
+		i++;
+	return (i);
+}
+
 int same_size(char **map)
 {
-	int j;
-	int	i;
-	int k;
+	int	j;
 	int	l;
-
+	
 	j = 0;
-	i = 0;
 	l = line_count(map);
-	while (map[0][i])
-		i++;
-	while (map[j])
+	while (j < l)
 	{
-		k = 0;
-		while (map[j - 1][k])
-			k++;
-		if (k != i)
+		if (j == l - 1)
 		{
-			printf("aqui same size\n");
+			if (line_size(map[j]) == line_size(map[0]) - 1)
+				return(1);
+		}
+		if (line_size(map[j]) != line_size(map[0]))
+		{
+			ft_putstr_fd("Not a rectangular map.\n", 2);
 			return (0);
 		}
 		j++;
@@ -55,7 +62,7 @@ int	allowed_char(char **map)
 		{
 			if (c != '1' && c != '0' && c != 'P' && c != 'E' && c != 'C')
 			{
-				printf("aqui allowed char\n");
+				ft_putstr_fd("Prohibited character found\n", 2);
 				return (0);
 			}
 			i++;
@@ -99,24 +106,22 @@ int	parse_singles(char **map)
 	c = repeating_chars(map, 'C');
 	if (p != 1 || e != 1)
 	{
-		printf("aqui parse singles\n");
+		ft_putstr_fd("Multiple players or exits\n", 2);
 		return (0);
 	}
 	if (c <= 0)
 	{
-		printf("aqui parse singles\n");
+		ft_putstr_fd("Not enough collectibles\n", 2);
 		return (0);
 	}
 	return (1);
 }
 
-int	map_check(char **map)
+int	map_check(char **map, char *pathname)
 {
-	if (!border_check(map) || !same_size(map) || !allowed_char(map) || !parse_singles(map))
-	{
-		ft_putstr_fd("Error\n", 2);
+	if (!border_check(map) || !same_size(map) \
+		 || !allowed_char(map) || !parse_singles(map) || !map_name(pathname))
 		return (0);
-	}
 	return (1);
 }
 
@@ -155,11 +160,10 @@ int	map_checker(char *pathname)
 		close(fd);
 		/* data()->map.map_lines = line_count(data()->map.map);
 		data()->map.map_elem = elem_count(data()->map.map[0]); */
-		printf("%d \n", map_check(data()->map.map));
-		if (map_check(data()->map.map))
+		if (map_check(data()->map.map, pathname))
 			return (1);
 	}
 	else
-		ft_putstr_fd("Map not found!\n", 2);
+		ft_putstr_fd("Invalid name or map not found!\n", 2);
 	return (0);
 }

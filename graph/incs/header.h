@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/13 14:16:04 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:04:47 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	ceiling_floor_check(char **map);
 int	count_lines(char **map);
 int	border_check(char **map);
 void	ft_putstr_fd(char *s, int fd);
-int map_check(char **map);
+int map_check(char **map, char *pathname);
 int same_size(char **map);
 int	line_count(char **map);
 char	**load_map_zico(char **map, int fd, int line_count);

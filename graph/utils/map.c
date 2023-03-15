@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:47:20 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/13 14:38:21 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:09:20 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int	ceiling_floor_check(char **map)
 	k = 0;
 	while (map[0][k])
 		k++;
+	if (map[n])
 	while (map[j])
 	{
-		if (j == 0 || j == n - 1)
+		if (j == 0)
 		{
 			while (map[j][i] && i < k - 1)
 			{
@@ -82,7 +83,10 @@ int	border_check(char **map)
 	b = wall_check(map);
 	res = a + b;
 	if (res != 2)
+	{
+		ft_putstr_fd("Map not closed\n", 2);
 		return (0);
+	}
 	return (1);
 }
 
@@ -95,7 +99,7 @@ int		map_name(char *pathname)
 	fd = 0;
 	while (pathname[++i])
 		 ;
-	if (pathname[i - 1] != 'r' && pathname[i - 2] != 'e' && pathname[i - 3] != 'b' && pathname[i - 4] != '.')
+	if (pathname[i - 1] != 'r' || pathname[i - 2] != 'e' || pathname[i - 3] != 'b' || pathname[i - 4] != '.')
 		return (0);
 	else
 		fd = open(pathname, O_RDONLY);

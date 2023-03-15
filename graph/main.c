@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/13 14:07:32 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:59:47 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ int	main(int ac, char **av)
 		if (map_checker(av[1]))
 			initialize();
 	}
+	else
+		ft_putstr_fd("Wrong number of arguments\n", 2);
 	return (0);
 }
