@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/14 10:59:47 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:28:46 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ void	paint_floor(int w, int h)
 	t_img	image;
 	
 	image = data()->image;
+	put_floor(w, h);
+	paint_line(&data()->border, data()->crystal.x, data()->crystal.y, data()->map.map);
+	paint_icon(&data()->player, data()->piece.x, data()->piece.y);
+	mlx_put_image_to_window(data()->window.mlx_ptr, data()->window.win_ptr, image.img_ptr, 0, 0);
+}
+
+void	put_floor(int w, int h)
+{
+	t_img	image;
+	
+	image = data()->image;
 	int i;
 	int j = 0;
 	while (j < h)
@@ -38,8 +49,6 @@ void	paint_floor(int w, int h)
 		}
 		j++;
 	}
-	paint_icon(&data()->pice, data()->piece.x, data()->piece.y);
-	mlx_put_image_to_window(data()->window.mlx_ptr, data()->window.win_ptr, image.img_ptr, 0, 0);
 }
 
 void	paint_icon(t_img *image, int x, int y)
@@ -60,12 +69,42 @@ void	paint_icon(t_img *image, int x, int y)
 	}
 }
 
+void	paint_line(t_img *image, int x, int y, char **map)
+{
+	int	i;
+	int	j;
+	
+	j = 0;
+	x = 0;
+	y = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[0][i] && map[0][i] == '1')
+		{
+			paint_icon(image, x, y);
+			x += 32;
+			i++;
+		}
+		j++;
+		y += 32;
+	}
+}
+
 void	load_icon(char *path)
 {
-	(data())->pice.img_ptr = mlx_xpm_file_to_image(data()->window.mlx_ptr, path, &data()->pice.w, &data()->pice.h);
-	(data())->pice.addr = mlx_get_data_addr(data()->pice.img_ptr, &(data()->pice.bpp),
-			&(data()->pice.line_len), &(data()->pice.endian));
+	(data())->player.img_ptr = mlx_xpm_file_to_image(data()->window.mlx_ptr, path, &data()->player.w, &data()->player.h);
+	(data())->player.addr = mlx_get_data_addr(data()->player.img_ptr, &(data()->player.bpp),
+			&(data()->player.line_len), &(data()->player.endian));
 }
+
+void	load_border(char *path)
+{
+	(data())->border.img_ptr = mlx_xpm_file_to_image(data()->window.mlx_ptr, path, &data()->border.w, &data()->border.h);
+	(data())->border.addr = mlx_get_data_addr(data()->border.img_ptr, &(data()->border.bpp),
+			&(data()->border.line_len), &(data()->border.endian));
+}
+
 
 int	move(int key_pressed)
 {
@@ -79,20 +118,23 @@ int	move(int key_pressed)
 		(data())->piece.y -= 16;
 	if (key_pressed == XK_Escape)
 		exit_tutorial(&(data())->window);
-	paint_floor(300, 300);
+	paint_floor(32 * (data())->map.map_elem, 32 * (data())->map.map_lines);
 	return (0);
 }
 
 void	initialize()
 {
-	(data())->window = new_program(300, 300, "so_long");
+	(data())->window = new_program(32 * (data())->map.map_elem, 32 * (data())->map.map_lines, "so_long");
 	if(!data()->window.mlx_ptr || !data()->window.win_ptr)
 		exit(1);
-	(data())->image = new_img(300, 300);
-	(data())->piece.x = 5;
-	(data())->piece.y = 5;
-	load_icon("chess-pieces/piece1.xpm");
-	paint_floor(300, 300);
+	(data())->image = new_img(32 * (data())->map.map_elem, 32 * (data())->map.map_lines);
+	(data())->piece.x = 20;
+	(data())->piece.y = 20;
+	(data())->crystal.x = 0;
+	(data())->crystal.y = 0;
+	load_border("imgs/bill.xpm");
+	load_icon("imgs/hobbit.xpm");
+	paint_floor(32 * (data())->map.map_elem, 32 * (data())->map.map_lines);
 	mlx_hook(data()->window.win_ptr, 2, 1L<<0, move, data());
 	mlx_hook(data()->window.win_ptr, 17, 0, exit_tutorial, data());
 	mlx_loop(data()->window.mlx_ptr);

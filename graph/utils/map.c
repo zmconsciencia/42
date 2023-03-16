@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:47:20 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/14 18:09:20 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:11:13 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,45 @@ int	count_lines(char **map)
 	return (i);
 }
 
-int	ceiling_floor_check(char **map)
+int	ceiling_check(char **map)
 {
-	int	n;
 	int i;
-	int	j;
 	int	k;
+
+	i = 0;
+	k = 0;
+	if (map[0] == NULL)
+	{
+		ft_putstr_fd("No map.\n", 2);
+		exit(1);
+	}
+	while (map[0][k])
+		k++;
+	while (map[0][i] && i < k - 1)
+	{
+		if (map[0][i] != '1' || map[0][k - 1] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	floor_check(char **map)
+{
+	int i;
+	int	k;
+	int	n;
 
 	n = count_lines(map);
 	i = 0;
-	j = 0;
 	k = 0;
-	while (map[0][k])
+	while (map[n - 1][k])
 		k++;
-	if (map[n])
-	while (map[j])
+	while (map[n - 1][i] && i < k - 1)
 	{
-		if (j == 0)
-		{
-			while (map[j][i] && i < k - 1)
-			{
-				if (map[j][i] != '1' || map[j][k - 1] != '\n')
-					return (0);
-				i++;
-			}
-		}
-		j++;
+		if (map[n - 1][i] != '1')
+			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -77,12 +90,14 @@ int	border_check(char **map)
 {
 	int a;
 	int b;
+	int	c;
 	int res;
 
-	a = ceiling_floor_check(map);
+	a = ceiling_check(map);
 	b = wall_check(map);
-	res = a + b;
-	if (res != 2)
+	c = floor_check(map);
+	res = a + b + c;
+	if (res != 3)
 	{
 		ft_putstr_fd("Map not closed\n", 2);
 		return (0);

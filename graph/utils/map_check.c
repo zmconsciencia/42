@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:51:39 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/14 12:00:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:08:12 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,18 @@ int	allowed_char(char **map)
 {
 	int		i;
 	int		j;
-	char	c;
 
 	j = 0;
 	i = 0;
-	c = map[j][i];
-	while (map[j])
+	while (j < count_lines(map))
 	{
 		i = 0;
 		while (map[j][i])
 		{
-			if (c != '1' && c != '0' && c != 'P' && c != 'E' && c != 'C')
+			if (map[j][i] != '1' && map[j][i] != '0' && map[j][i] != 'P' \
+				 && map[j][i] != 'E' && map[j][i] != 'C' && map[j][i] != '\n')
 			{
-				ft_putstr_fd("Prohibited character found\n", 2);
+				ft_putstr_fd("Prohibited character found.\n", 2);
 				return (0);
 			}
 			i++;
@@ -106,15 +105,44 @@ int	parse_singles(char **map)
 	c = repeating_chars(map, 'C');
 	if (p != 1 || e != 1)
 	{
-		ft_putstr_fd("Multiple players or exits\n", 2);
+		ft_putstr_fd("Invalid players or exits.\n", 2);
 		return (0);
 	}
 	if (c <= 0)
 	{
-		ft_putstr_fd("Not enough collectibles\n", 2);
+		ft_putstr_fd("Not enough collectibles.\n", 2);
 		return (0);
 	}
 	return (1);
+}
+
+t_point	findPlayer(char	**map)
+{
+	int		i;
+	int		j;
+	t_point	point;
+
+	j = 0;
+	point.x = 0;
+	point.y = 0;
+	if (parse_singles(map))
+	{
+		while (map[j])
+		{
+			i = 0;
+			while (map[j][i])
+			{
+				if (map[j][i] == 'P')
+				{
+					point.x = i;
+					point.y = j;
+				}
+				i++;
+			}
+			j++;
+		}
+	}
+	return (point);
 }
 
 int	map_check(char **map, char *pathname)
@@ -156,14 +184,31 @@ int	map_checker(char *pathname)
 	fd = map_name(pathname);
 	if (fd >= 3)
 	{
+		t_point	size;
+		t_point begin;
+		
 		(data())->map.map = load_map_zico(0, fd, 0);
 		close(fd);
-		/* data()->map.map_lines = line_count(data()->map.map);
-		data()->map.map_elem = elem_count(data()->map.map[0]); */
-		if (map_check(data()->map.map, pathname))
+		data()->map.map_lines = line_count(data()->map.map);
+		data()->map.map_elem = elem_count(data()->map.map[0]);
+		size.x = elem_count(data()->map.map[0]);
+		size.y = line_count(data()->map.map);
+		begin = findPlayer((data())->map.map);
+		if (map_check(data()->map.map, pathname) && \
+			pathFinder(ft_matrixdup(flood_fill((data())->map.map, size, begin))))
 			return (1);
 	}
 	else
-		ft_putstr_fd("Invalid name or map not found!\n", 2);
+		ft_putstr_fd("Invalid name or map not found.\n", 2);
 	return (0);
+}
+
+int	elem_count(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line && line[i] && line[i] != '\n')
+		i++;
+	return (i);
 }

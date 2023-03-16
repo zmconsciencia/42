@@ -3,7 +3,8 @@ SOURCES = main.c
 SOURCESUTILS =	mlx_utils.c \
 				map.c \
 				map_check.c \
-				additionals.c
+				additionals.c \
+				path.c
 
 SOURCEGNL =	get_next_line.c \
 			get_next_line_utils.c
@@ -19,13 +20,13 @@ OBJECTSUTILS = $(SOURCESUTILSF:.c=.o)
 OBJECTSGNL = $(SOURCEGNLF:.c=.o)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_Linux -Iincs -O3 -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -g -I/usr/include -Imlx_Linux -Iincs -O3 -c $< -o $@
 
 NAME = so_long
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -Iincs -Imlx_Linux
+CFLAGS = -Wall -Werror -Wextra -g -Iincs -Imlx_Linux -fsanitize=address
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/14 11:04:47 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:23:57 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,31 +59,26 @@ typedef struct s_img {
 	int		line_len;
 }		t_img;
 
-typedef struct s_piece{
-	unsigned short int	x;
-	unsigned short int	y;
-	t_img			gordo;
-} t_piece;
-
 typedef struct s_map{
 	char	**map;
 	int		map_lines;
 	int		map_elem;
-	int		p;
-	int		e;
-	int		c;
-	int		p_double;
-	int		e_double;
-	int		c_double;
 }	t_map;
+
+typedef struct  s_point{
+    int           x;
+    int           y;
+}               t_point;
 
 typedef	struct s_data{
 	t_win		window;
 	t_img		image;
-	t_img		pice;
-	t_piece		piece;
+	t_img		player;
 	char		*path;
 	t_map		map;
+	t_point		piece;
+	t_point		crystal;
+	t_img		border;
 }	t_data;
 
 t_win	new_program(int w, int h, char *str);
@@ -99,7 +94,8 @@ void	initialize();
 t_data	*data();
 int		map_name(char *pathname);
 int	wall_check(char **map);
-int	ceiling_floor_check(char **map);
+int	ceiling_check(char **map);
+int	floor_check(char **map);
 int	count_lines(char **map);
 int	border_check(char **map);
 void	ft_putstr_fd(char *s, int fd);
@@ -112,5 +108,13 @@ size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *str1, char *str2);
 int	clearstack(char *stack);
 char	*get_next_line(int fd);
+void printMatrix(char **tab);
+char	**ft_matrixdup(char **map);
+int	elem_count(char *line);
+void	printFlooded(char **tab, int a, int b);
+int	pathFinder(char	**map);
+char  **flood_fill(char **tab, t_point size, t_point begin);
+void	paint_line(t_img *image, int x, int y, char **map);
+void	put_floor(int w, int h);
 
 #endif
