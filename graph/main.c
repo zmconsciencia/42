@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/17 15:49:08 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:10:52 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ void	paint_floor(int w, int h, char **map)
 				paint_icon(&(data())->floor,w, h);
 				paint_icon(&(data())->collectible,w, h);
 			}
-			
+			else if (map[j][i] == 'E')
+			{
+				paint_icon(&(data())->floor,w, h);
+				paint_icon(&(data())->exit,w, h);
+			}
 			w += 32;
 		}
 		j++;
@@ -122,6 +126,13 @@ void	load_collectible(char *path)
 			&(data()->collectible.line_len), &(data()->collectible.endian));
 }
 
+void	load_exit(char *path)
+{
+	(data())->exit.img_ptr = mlx_xpm_file_to_image(data()->window.mlx_ptr, path, &data()->exit.w, &data()->exit.h);
+	(data())->exit.addr = mlx_get_data_addr(data()->exit.img_ptr, &(data()->exit.bpp),
+			&(data()->exit.line_len), &(data()->exit.endian));
+}
+
 int	move(int key_pressed)
 {
 	if (key_pressed == XK_d || key_pressed == XK_Right)
@@ -149,6 +160,7 @@ void	initialize()
 	load_icon("imgs/hobbit.xpm");
 	load_floor("imgs/floor.xpm");
 	load_collectible("imgs/white_crystal.xpm");
+	load_exit("imgs/black_crystal.xpm");
 	paint_floor(32 * (data())->map.map_elem, 32 * (data())->map.map_lines, (data())->map.map);
 	mlx_hook(data()->window.win_ptr, 2, 1L<<0, move, data());
 	mlx_hook(data()->window.win_ptr, 17, 0, exit_tutorial, data());

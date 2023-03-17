@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/17 15:47:51 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:09:41 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef	struct s_data{
 	t_img		border;
 	t_img		floor;
 	t_img		collectible;
+	t_img		exit;
 }	t_data;
 
 t_win	new_program(int w, int h, char *str);

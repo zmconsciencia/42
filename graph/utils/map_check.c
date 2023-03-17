@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:51:39 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/17 15:47:41 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:59:54 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,8 @@ void	findP(char	**map)
 {
 	int		i;
 	int		j;
-	t_point	point;
 
 	j = 0;
-	point.x = 0;
-	point.y = 0;
 	if (parse_singles(map))
 	{
 		while (map[j])
