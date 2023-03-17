@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:51:39 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/15 18:08:12 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:27:38 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ int	map_checker(char *pathname)
 	{
 		t_point	size;
 		t_point begin;
+		char	**temp;
 		
 		(data())->map.map = load_map_zico(0, fd, 0);
 		close(fd);
@@ -194,9 +195,11 @@ int	map_checker(char *pathname)
 		size.x = elem_count(data()->map.map[0]);
 		size.y = line_count(data()->map.map);
 		begin = findPlayer((data())->map.map);
+		temp = ft_matrixdup((data())->map.map);
 		if (map_check(data()->map.map, pathname) && \
-			pathFinder(ft_matrixdup(flood_fill((data())->map.map, size, begin))))
+			pathFinder(flood_fill(temp, size, begin)))
 			return (1);
+		free(temp);
 	}
 	else
 		ft_putstr_fd("Invalid name or map not found.\n", 2);

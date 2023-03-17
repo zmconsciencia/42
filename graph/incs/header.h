@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/16 14:23:57 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/17 00:26:37 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ typedef struct s_map{
 	int		map_elem;
 }	t_map;
 
+typedef struct s_player {
+	t_img	image;
+	int		x;
+	int		y;
+}	t_player;
+
+
 typedef struct  s_point{
     int           x;
     int           y;
@@ -73,19 +80,21 @@ typedef struct  s_point{
 typedef	struct s_data{
 	t_win		window;
 	t_img		image;
-	t_img		player;
+	t_player	player;
 	char		*path;
 	t_map		map;
 	t_point		piece;
 	t_point		crystal;
 	t_img		border;
+	t_img		floor;
+	t_img		collectible;
 }	t_data;
 
 t_win	new_program(int w, int h, char *str);
 void	my_mlx_pixel_put(t_img data, int x, int y, int color);
 int		my_mlx_pixel_get(t_img data, int x, int y);
 t_img	new_img(int w, int h);
-void	paint_floor(int w, int h);
+void	paint_floor(int w, int h, char **map);
 void	paint_icon(t_img *image, int x, int y);
 void	load_icon(char *path);
 int		move(int key_pressed);
@@ -114,7 +123,6 @@ int	elem_count(char *line);
 void	printFlooded(char **tab, int a, int b);
 int	pathFinder(char	**map);
 char  **flood_fill(char **tab, t_point size, t_point begin);
-void	paint_line(t_img *image, int x, int y, char **map);
 void	put_floor(int w, int h);
 
 #endif
