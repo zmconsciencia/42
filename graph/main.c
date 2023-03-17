@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/17 01:31:04 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:49:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,7 @@ void	initialize()
 	if(!data()->window.mlx_ptr || !data()->window.win_ptr)
 		exit(1);
 	(data())->image = new_img(32 * (data())->map.map_elem, 32 * (data())->map.map_lines);
-	(data())->piece.x = 20;
-	(data())->piece.y = 20;
-	(data())->crystal.x = 0;
-	(data())->crystal.y = 0;
+	findP((data())->map.map);
 	load_border("imgs/walls.xpm");
 	load_icon("imgs/hobbit.xpm");
 	load_floor("imgs/floor.xpm");

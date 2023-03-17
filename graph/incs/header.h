@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/17 00:26:37 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:47:51 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define BLACK 0x00000000
 # define PURPLE 0x00000033	
 # define WHITE 0x00FFFFFF
-# define PINK 14326936
+# define PINK 0xc0e070
 
 # define DOWN 65364
 # define UP 65362
@@ -65,17 +65,17 @@ typedef struct s_map{
 	int		map_elem;
 }	t_map;
 
-typedef struct s_player {
-	t_img	image;
-	int		x;
-	int		y;
-}	t_player;
-
-
 typedef struct  s_point{
     int           x;
     int           y;
 }               t_point;
+
+typedef struct s_player {
+	t_img	image;
+	t_point	start;
+	int		x;
+	int		y;
+}	t_player;
 
 typedef	struct s_data{
 	t_win		window;
@@ -124,5 +124,7 @@ void	printFlooded(char **tab, int a, int b);
 int	pathFinder(char	**map);
 char  **flood_fill(char **tab, t_point size, t_point begin);
 void	put_floor(int w, int h);
+t_point	findPlayer(char	**map);
+void	findP(char	**map);
 
 #endif

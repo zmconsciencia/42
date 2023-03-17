@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:51:39 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/16 22:27:38 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:47:41 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,34 @@ int	parse_singles(char **map)
 		return (0);
 	}
 	return (1);
+}
+
+void	findP(char	**map)
+{
+	int		i;
+	int		j;
+	t_point	point;
+
+	j = 0;
+	point.x = 0;
+	point.y = 0;
+	if (parse_singles(map))
+	{
+		while (map[j])
+		{
+			i = 0;
+			while (map[j][i])
+			{
+				if (map[j][i] == 'P')
+				{
+					(data())->player.x = i*32;
+					(data())->player.y = j*32;
+				}
+				i++;
+			}
+			j++;
+		}
+	}
 }
 
 t_point	findPlayer(char	**map)
