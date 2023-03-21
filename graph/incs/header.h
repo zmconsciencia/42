@@ -6,27 +6,14 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/20 18:29:22 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:21:16 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
 
-# define LIGHT_BLUE 0x0099FFFF
-# define YELLOW 0x00FFFF00
-# define RED 0x00FF0000
-# define BLUE 0x000033FF
-# define GREEN 0x0000CC00
-# define BLACK 0x00000000
-# define PURPLE 0x00000033	
-# define WHITE 0x00FFFFFF
-# define PINK 0xc0e070
-
-# define DOWN 65364
-# define UP 65362
-# define RIGHT 65363
-# define LEFT 65361
+# define BACK 0xc0e070
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -65,10 +52,10 @@ typedef struct s_map{
 	int		map_elem;
 }	t_map;
 
-typedef struct  s_point{
-    int           x;
-    int           y;
-}               t_point;
+typedef struct s_point{
+	int		x;
+	int		y;
+}	t_point;
 
 typedef struct s_player {
 	t_img	image;
@@ -80,7 +67,7 @@ typedef struct s_player {
 	int		status;
 }	t_player;
 
-typedef	struct s_data{
+typedef struct s_data{
 	t_win		window;
 	t_img		image;
 	t_player	player;
@@ -101,32 +88,32 @@ t_img	new_img(int w, int h);
 void	paint_floor(int w, int h, char **map);
 void	paint_icon(t_img *image, int x, int y);
 void	load_icon(char *path);
-int	move(int key_pressed);
+int		move(int key_pressed);
 int		exit_tutorial(t_win *window);
-void	initialize();
-t_data	*data();
+void	initialize(void);
+t_data	*data(void);
 int		map_name(char *pathname);
-int	wall_check(char **map);
-int	ceiling_check(char **map);
-int	floor_check(char **map);
-int	count_lines(char **map);
-int	border_check(char **map);
+int		wall_check(char **map);
+int		ceiling_check(char **map);
+int		floor_check(char **map);
+int		count_lines(char **map);
+int		border_check(char **map);
 void	ft_putstr_fd(char *s, int fd);
-int map_check(char **map, char *pathname);
-int same_size(char **map);
-int	line_count(char **map);
+int		map_check(char **map, char *pathname);
+int		same_size(char **map);
+int		line_count(char **map);
 char	**load_map_zico(char **map, int fd, int line_count);
-int	map_checker(char *map_path);
+int		map_checker(char *map_path);
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *str1, char *str2);
-int	clearstack(char *stack);
+int		clearstack(char *stack);
 char	*get_next_line(int fd);
-void printMatrix(char **tab);
+void	printMatrix(char **tab);
 char	**ft_matrixdup(char **map);
-int	elem_count(char *line);
+int		elem_count(char *line);
 void	printFlooded(char **tab, int a, int b);
-int	pathFinder(char	**map);
-char  **flood_fill(char **tab, t_point size, t_point begin);
+int		pathFinder(char	**map);
+char	**flood_fill(char **tab, t_point size, t_point begin);
 void	put_floor(int w, int h);
 t_point	findPlayer(char	**map);
 void	findP(char	**map);
