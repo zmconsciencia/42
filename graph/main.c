@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/17 16:10:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:34:10 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,18 +133,66 @@ void	load_exit(char *path)
 			&(data()->exit.line_len), &(data()->exit.endian));
 }
 
+void	collectible(char **map)
+{
+	map = data()->map.map;
+	if (map[data()->player.j][data()->player.i] == 'C')
+	{
+		map[data()->player.j][data()->player.i] = '0';
+	}
+}
+
+int		is_walkable(char **map, int	key_pressed)
+{
+	map = (data())->map.map;
+	if (key_pressed == XK_d || key_pressed == XK_Right)
+	{
+		if (map[data()->player.j][data()->player.i + 1] != '1')
+			return (1);
+	}
+	else if (key_pressed == XK_s || key_pressed == XK_Down)
+	{
+		if (map[data()->player.j + 1][data()->player.i] != '1')
+			return (1);
+	}
+	else if (key_pressed == XK_a || key_pressed == XK_Left)
+	{
+		if (map[data()->player.j][data()->player.i - 1] != '1')
+			return (1);
+	}
+	else if (key_pressed == XK_w || key_pressed == XK_Up)
+	{
+		if (map[data()->player.j - 1][data()->player.i] != '1')
+			return (1);
+	}
+	return (0);
+}
+
 int	move(int key_pressed)
 {
-	if (key_pressed == XK_d || key_pressed == XK_Right)
+	if ((key_pressed == XK_d || key_pressed == XK_Right) && is_walkable((data())->map.map, key_pressed))
+	{
 		(data())->player.x += 32;
-	else if (key_pressed == XK_s || key_pressed == XK_Down)
+		(data())->player.i++;
+	}
+	else if ((key_pressed == XK_s || key_pressed == XK_Down) && is_walkable((data())->map.map, key_pressed))
+	{
 		(data())->player.y += 32;
-	else if (key_pressed == XK_a || key_pressed == XK_Left)
+		(data())->player.j++;
+	}
+	else if ((key_pressed == XK_a || key_pressed == XK_Left) && is_walkable((data())->map.map, key_pressed))
+	{
 		(data())->player.x -= 32;
-	else if (key_pressed == XK_w || key_pressed == XK_Up)
+		(data())->player.i--;
+	}
+	else if ((key_pressed == XK_w || key_pressed == XK_Up) && is_walkable((data())->map.map, key_pressed))
+	{
 		(data())->player.y -= 32;
+		(data())->player.j--;
+	}
 	if (key_pressed == XK_Escape)
 		exit_tutorial(&(data())->window);
+	collectible((data())->map.map);
 	paint_floor(32 * (data())->map.map_elem, 32 * (data())->map.map_lines, (data())->map.map);
 	return (0);
 }

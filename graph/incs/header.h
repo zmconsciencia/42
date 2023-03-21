@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/17 16:09:41 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:29:22 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ typedef struct s_player {
 	t_point	start;
 	int		x;
 	int		y;
+	int		i;
+	int		j;
+	int		status;
 }	t_player;
 
 typedef	struct s_data{
@@ -98,7 +101,7 @@ t_img	new_img(int w, int h);
 void	paint_floor(int w, int h, char **map);
 void	paint_icon(t_img *image, int x, int y);
 void	load_icon(char *path);
-int		move(int key_pressed);
+int	move(int key_pressed);
 int		exit_tutorial(t_win *window);
 void	initialize();
 t_data	*data();
