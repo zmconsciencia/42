@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:55:58 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/11 06:51:15 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:59:50 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,24 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putchar_fd(s[i], fd);
 		i++;
 	}
+}
+
+int	line_count(char **map)
+{
+	int	j;
+
+	j = 0;
+	while (map[j])
+		j++;
+	return (j);
+}
+
+int	elem_count(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line && line[i] && line[i] != '\n')
+		i++;
+	return (i);
 }

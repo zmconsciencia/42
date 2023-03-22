@@ -6,6 +6,8 @@
 		"ranges": "c",
 		"utility": "c",
 		"random": "c",
-		"*.tcc": "c"
+		"*.tcc": "c",
+		"header.h": "c",
+		"xlib.h": "c"
 	}
 }

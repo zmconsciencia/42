@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/21 19:21:16 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:38:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_map{
 	char	**map;
 	int		map_lines;
 	int		map_elem;
+	int		c;
 }	t_map;
 
 typedef struct s_point{
@@ -96,7 +97,6 @@ int		map_name(char *pathname);
 int		wall_check(char **map);
 int		ceiling_check(char **map);
 int		floor_check(char **map);
-int		count_lines(char **map);
 int		border_check(char **map);
 void	ft_putstr_fd(char *s, int fd);
 int		map_check(char **map, char *pathname);
@@ -112,10 +112,23 @@ void	printMatrix(char **tab);
 char	**ft_matrixdup(char **map);
 int		elem_count(char *line);
 void	printFlooded(char **tab, int a, int b);
-int		pathFinder(char	**map);
+int		path_finder(char	**map);
 char	**flood_fill(char **tab, t_point size, t_point begin);
 void	put_floor(int w, int h);
-t_point	findPlayer(char	**map);
-void	findP(char	**map);
+t_point	findplayer(char	**map);
+void	findp(char	**map);
+void	paint_both(t_img *image, int w, int h);
+void	paint_canva(int w, int h, char **map);
+void	load_icon(char *path);
+void	load_border(char *path);
+void	load_floor(char *path);
+void	load_collectible(char *path);
+void	load_exit(char *path);
+void	collectible(char **map);
+int		is_walk(char **map, int key_pressed);
+int		allowed_char(char **map);
+int		parse_singles(char **map);
+void	find_objective(char **map);
+void	finish(char **map);
 
 #endif

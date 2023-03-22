@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:20:46 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/15 17:55:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:01:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,49 +33,37 @@ char	**ft_matrixdup(char **map)
 	return (map2);
 }
 
-void f_fill(char **tab, t_point size, int row, int col)
+void	f_fill(char **tab, t_point size, int row, int col)
 {
-    if (row < 0 || col < 0 || row >= size.y || col >= size.x)
-        return;
-    if (tab[row][col] == '1' || (tab[row][col] != 'P' && tab[row][col] != '0' && tab[row][col] != 'C' && tab[row][col] != 'E'))
-        return;
-    tab[row][col] = '1';
-
-    f_fill(tab, size, row -1, col);
-    f_fill(tab, size, row +1, col);
-    f_fill(tab, size, row, col - 1);
-    f_fill(tab, size, row, col + 1);
+	if (row < 0 || col < 0 || row >= size.y || col >= size.x)
+		return ;
+	if (tab[row][col] == '1' || (tab[row][col] != 'P' \
+		&& tab[row][col] != '0' && \
+			tab[row][col] != 'C' && tab[row][col] != 'E'))
+		return ;
+	tab[row][col] = '1';
+	f_fill(tab, size, row -1, col);
+	f_fill(tab, size, row +1, col);
+	f_fill(tab, size, row, col - 1);
+	f_fill(tab, size, row, col + 1);
 }
 
-char  **flood_fill(char **tab, t_point size, t_point begin)
+char	**flood_fill(char **tab, t_point size, t_point begin)
 {
-    f_fill(tab, size, begin.y, begin.x);
-
+	f_fill(tab, size, begin.y, begin.x);
 	return (tab);
 }
 
-void printMatrix(char **tab)
-{
-    int i, j;
-
-    for (i = 0; tab[i] != NULL; i++) {
-        for (j = 0; tab[i][j] != '\0'; j++) {
-            printf("%c ", tab[i][j]);
-        }
-        printf("\n");
-    }
-}
-
-int	pathFinder(char	**map)
+int	path_finder(char	**map)
 {
 	int	i;
 	int	j;
 
 	j = 0;
-	while(map[j])
+	while (map[j])
 	{
 		i = 0;
-		while(map[j][i])
+		while (map[j][i])
 		{
 			if (map[j][i] == 'P' || map[j][i] == 'C' || map[j][i] == 'E')
 			{

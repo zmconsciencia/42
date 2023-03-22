@@ -4,7 +4,13 @@ SOURCESUTILS =	mlx_utils.c \
 				map.c \
 				map_check.c \
 				additionals.c \
-				path.c
+				path.c \
+				load.c \
+				canva.c \
+				collision_handle.c \
+				initialize.c \
+				map_checker.c \
+				collision_add.c
 
 SOURCEGNL =	get_next_line.c \
 			get_next_line_utils.c

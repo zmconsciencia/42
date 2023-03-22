@@ -6,28 +6,15 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:47:20 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/15 13:11:13 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:02:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	count_lines(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (*map != NULL)
-	{
-		i++;
-		map++;
-	}
-	return (i);
-}
-
 int	ceiling_check(char **map)
 {
-	int i;
+	int	i;
 	int	k;
 
 	i = 0;
@@ -50,11 +37,11 @@ int	ceiling_check(char **map)
 
 int	floor_check(char **map)
 {
-	int i;
+	int	i;
 	int	k;
 	int	n;
 
-	n = count_lines(map);
+	n = line_count(map);
 	i = 0;
 	k = 0;
 	while (map[n - 1][k])
@@ -68,7 +55,7 @@ int	floor_check(char **map)
 	return (1);
 }
 
-int wall_check(char **map)
+int	wall_check(char **map)
 {
 	int	j;
 	int	k;
@@ -88,10 +75,10 @@ int wall_check(char **map)
 
 int	border_check(char **map)
 {
-	int a;
-	int b;
+	int	a;
+	int	b;
 	int	c;
-	int res;
+	int	res;
 
 	a = ceiling_check(map);
 	b = wall_check(map);
@@ -105,7 +92,7 @@ int	border_check(char **map)
 	return (1);
 }
 
-int		map_name(char *pathname)
+int	map_name(char *pathname)
 {
 	int	i;
 	int	fd;
@@ -113,8 +100,9 @@ int		map_name(char *pathname)
 	i = -1;
 	fd = 0;
 	while (pathname[++i])
-		 ;
-	if (pathname[i - 1] != 'r' || pathname[i - 2] != 'e' || pathname[i - 3] != 'b' || pathname[i - 4] != '.')
+		;
+	if (pathname[i - 1] != 'r' || pathname[i - 2] != 'e' \
+		|| pathname[i - 3] != 'b' || pathname[i - 4] != '.')
 		return (0);
 	else
 		fd = open(pathname, O_RDONLY);
