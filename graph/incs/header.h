@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 16:28:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:20:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <fcntl.h>
+# include <limits.h>
 
 typedef struct s_win {
 	void	*mlx_ptr;
@@ -81,6 +82,7 @@ typedef struct s_data{
 	t_img		collectible;
 	t_img		exit;
 	int			count;
+	int			moves;
 }	t_data;
 
 t_win	new_program(int w, int h, char *str);
@@ -109,10 +111,8 @@ size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *str1, char *str2);
 int		clearstack(char *stack);
 char	*get_next_line(int fd);
-void	printMatrix(char **tab);
 char	**ft_matrixdup(char **map);
 int		elem_count(char *line);
-void	printFlooded(char **tab, int a, int b);
 int		path_finder(char	**map);
 char	**flood_fill(char **tab, t_point size, t_point begin);
 void	put_floor(int w, int h);
@@ -134,5 +134,8 @@ void	finish(char **map);
 int		game_loop(void *a);
 void	ft_free(void);
 int		free_arr(char **map);
+char	*ft_itoa(int n);
+void	move_handle(int kp);
+int	increase_counter(int kp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:49:25 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 14:54:09 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:19:28 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,15 @@ void	move_handle(int kp)
 		exit_tutorial(&(data())->window);
 }
 
-int	move(int kp)
+int	increase_counter(int kp)
 {
-	if (data()->count > 0)
-		return (0);
-	move_handle(kp);
-	collectible((data())->map.map);
-	finish(data()->map.map);
-	paint_canva(32 * (data())->map.map_elem, \
-		32 * (data())->map.map_lines, (data())->map.map);
+	if ((kp == XK_d || kp == XK_Right) && is_walk((data())->map.map, kp))
+		return (1);
+	else if ((kp == XK_s || kp == XK_Down) && is_walk((data())->map.map, kp))
+		return (1);
+	else if ((kp == XK_a || kp == XK_Left) && is_walk((data())->map.map, kp))
+		return (1);
+	else if ((kp == XK_w || kp == XK_Up) && is_walk((data())->map.map, kp))
+		return (1);
 	return (0);
 }

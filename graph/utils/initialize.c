@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:53:43 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 14:54:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:17:54 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	game_loop(void *a)
 
 void	initialize(void)
 {
+	(data())->moves = 0;
 	(data())->window = new_program(32 * (data())->map.map_elem, \
 		32 * (data())->map.map_lines, "so_long");
 	if (!data()->window.mlx_ptr || !data()->window.win_ptr)

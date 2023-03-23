@@ -11,7 +11,9 @@ SOURCESUTILS =	mlx_utils.c \
 				initialize.c \
 				map_checker.c \
 				collision_add.c \
-				ft_free.c
+				ft_free.c \
+				ft_itoa.c \
+				move.c
 
 SOURCEGNL =	get_next_line.c \
 			get_next_line_utils.c
