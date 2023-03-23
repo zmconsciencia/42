@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/22 17:54:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:06:12 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 	{
 		if (map_checker(av[1]))
 			initialize();
+		printf("sdfsdfg\n");
 	}
 	else
 		ft_putstr_fd("Wrong number of arguments\n", 2);

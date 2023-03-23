@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:53:43 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/22 17:54:05 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:54:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@ t_data	*data(void)
 	static t_data	data;
 
 	return (&data);
+}
+
+int	game_loop(void *a)
+{
+	(void) a;
+	if (data()->count > 0)
+	{
+		data()->count++;
+		if (data()->count == 30000)
+			exit_tutorial(&data()->window);
+	}
+	return (0);
 }
 
 void	initialize(void)
@@ -37,5 +49,6 @@ void	initialize(void)
 		32 * (data())->map.map_lines, (data())->map.map);
 	mlx_hook(data()->window.win_ptr, 2, 1L << 0, move, data());
 	mlx_hook(data()->window.win_ptr, 17, 0, exit_tutorial, data());
+	mlx_loop_hook(data()->window.mlx_ptr, game_loop, NULL);
 	mlx_loop(data()->window.mlx_ptr);
 }

@@ -10,7 +10,8 @@ SOURCESUTILS =	mlx_utils.c \
 				collision_handle.c \
 				initialize.c \
 				map_checker.c \
-				collision_add.c
+				collision_add.c \
+				ft_free.c
 
 SOURCEGNL =	get_next_line.c \
 			get_next_line_utils.c
@@ -32,7 +33,7 @@ NAME = so_long
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g -Iincs -Imlx_Linux -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -Iincs -Imlx_Linux #-fsanitize=address
 
 all: $(NAME)
 

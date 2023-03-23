@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:15:48 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/22 17:00:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:06:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ int	exit_tutorial(t_win *window)
 {
 	if (window)
 	{
-		mlx_destroy_image(data()->window.mlx_ptr, data()->image.img_ptr);
-		mlx_destroy_window (window->mlx_ptr, window->win_ptr);
+		ft_free();
 	}
 	exit(1);
 }

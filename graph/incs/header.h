@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/22 18:38:08 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:28:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_data{
 	t_img		floor;
 	t_img		collectible;
 	t_img		exit;
+	int			count;
 }	t_data;
 
 t_win	new_program(int w, int h, char *str);
@@ -130,5 +131,8 @@ int		allowed_char(char **map);
 int		parse_singles(char **map);
 void	find_objective(char **map);
 void	finish(char **map);
+int		game_loop(void *a);
+void	ft_free(void);
+int		free_arr(char **map);
 
 #endif

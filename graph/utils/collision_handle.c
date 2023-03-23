@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:49:25 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/22 18:43:36 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:54:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	finish(char **map)
 	if ((data())->map.c == 0)
 	{
 		if (map[data()->player.j][data()->player.i] == 'E')
-			exit_tutorial(&(data())->window);
+			data()->count++;
 	}
 }
 
@@ -56,7 +56,7 @@ int	is_walk(char **map, int key_pressed)
 	return (0);
 }
 
-int	move(int kp)
+void	move_handle(int kp)
 {
 	if ((kp == XK_d || kp == XK_Right) && is_walk((data())->map.map, kp))
 	{
@@ -80,6 +80,13 @@ int	move(int kp)
 	}
 	if (kp == XK_Escape)
 		exit_tutorial(&(data())->window);
+}
+
+int	move(int kp)
+{
+	if (data()->count > 0)
+		return (0);
+	move_handle(kp);
 	collectible((data())->map.map);
 	finish(data()->map.map);
 	paint_canva(32 * (data())->map.map_elem, \

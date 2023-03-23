@@ -8,6 +8,7 @@
 		"random": "c",
 		"*.tcc": "c",
 		"header.h": "c",
-		"xlib.h": "c"
+		"xlib.h": "c",
+		"string": "c"
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_cheker.c                                       :+:      :+:    :+:   */
+/*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:58:31 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/22 18:00:10 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:29:15 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,28 @@ char	**load_map_zico(char **map, int fd, int line_count)
 	return (map);
 }
 
-int	map_checker(char *pathname)
+int	map_checker(char *pn)
 {
 	int		fd;
-	t_point	size;
-	t_point	begin;
-	char	**temp;
+	t_point	s;
+	t_point	b;
+	char	**t;
 
-	fd = map_name(pathname);
+	fd = map_name(pn);
 	if (fd >= 3)
 	{
 		(data())->map.map = load_map_zico(0, fd, 0);
 		close(fd);
 		data()->map.map_lines = line_count(data()->map.map);
 		data()->map.map_elem = elem_count(data()->map.map[0]);
-		size.x = elem_count(data()->map.map[0]);
-		size.y = line_count(data()->map.map);
-		begin = findplayer((data())->map.map);
-		temp = ft_matrixdup((data())->map.map);
-		if (map_check(data()->map.map, pathname) && \
-			path_finder(flood_fill(temp, size, begin)))
+		s.x = elem_count(data()->map.map[0]);
+		s.y = line_count(data()->map.map);
+		b = findplayer((data())->map.map);
+		t = ft_matrixdup((data())->map.map);
+		if (map_check(data()->map.map, pn) && path_finder(flood_fill(t, s, b)) \
+			&& free_arr(t))
 			return (1);
-		free(temp);
+		free_arr(t);
 	}
 	else
 		ft_putstr_fd("Invalid name or map not found.\n", 2);
