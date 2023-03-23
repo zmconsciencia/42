@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:00:55 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 16:28:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:17:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	free_arr(char **map)
 	int	i;
 
 	i = -1;
+	if (!map)
+		return (1);
 	while (map[++i])
 	{
 		free(map[i]);

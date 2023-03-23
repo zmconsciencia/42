@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 17:22:01 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:20:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <X11/Xlib.h>

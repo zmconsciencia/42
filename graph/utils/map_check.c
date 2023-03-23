@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:51:39 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/22 18:03:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:13:23 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	same_size(char **map)
 		}
 		if (line_size(map[j]) != line_size(map[0]))
 		{
-			ft_putstr_fd("Not a rectangular map.\n", 2);
+			ft_putstr_fd("Error.\n", 2);
 			return (0);
 		}
 		j++;
@@ -61,7 +61,7 @@ int	allowed_char(char **map)
 			if (map[j][i] != '1' && map[j][i] != '0' && map[j][i] != 'P' \
 				&& map[j][i] != 'E' && map[j][i] != 'C' && map[j][i] != '\n')
 			{
-				ft_putstr_fd("Prohibited character found.\n", 2);
+				ft_putstr_fd("Error.\n", 2);
 				return (0);
 			}
 			i++;
@@ -105,12 +105,12 @@ int	parse_singles(char **map)
 	c = repeating_chars(map, 'C');
 	if (p != 1 || e != 1)
 	{
-		ft_putstr_fd("Invalid players or exits.\n", 2);
+		ft_putstr_fd("Error.\n", 2);
 		return (0);
 	}
 	if (c <= 0)
 	{
-		ft_putstr_fd("Not enough collectibles.\n", 2);
+		ft_putstr_fd("Error.\n", 2);
 		return (0);
 	}
 	return (1);

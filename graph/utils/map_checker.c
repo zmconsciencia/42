@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:58:31 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 16:29:15 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:12:37 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ int	map_checker(char *pn)
 		s.x = elem_count(data()->map.map[0]);
 		s.y = line_count(data()->map.map);
 		b = findplayer((data())->map.map);
+		if (!map_check(data()->map.map, pn))
+			return (0);
 		t = ft_matrixdup((data())->map.map);
-		if (map_check(data()->map.map, pn) && path_finder(flood_fill(t, s, b)) \
-			&& free_arr(t))
+		if (path_finder(flood_fill(t, s, b)) && free_arr(t))
 			return (1);
 		free_arr(t);
 	}
 	else
-		ft_putstr_fd("Invalid name or map not found.\n", 2);
+		ft_putstr_fd("Error.\n", 2);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:47:20 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/22 18:02:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:12:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	ceiling_check(char **map)
 
 	i = 0;
 	k = 0;
-	if (map[0] == NULL)
+	if (map[0] == NULL || map[0][0] != '1')
 	{
-		ft_putstr_fd("No map.\n", 2);
+		free_arr(map);
+		ft_putstr_fd("Error.\n", 2);
 		exit(1);
 	}
 	while (map[0][k])
@@ -86,7 +87,7 @@ int	border_check(char **map)
 	res = a + b + c;
 	if (res != 3)
 	{
-		ft_putstr_fd("Map not closed\n", 2);
+		ft_putstr_fd("Error.\n", 2);
 		return (0);
 	}
 	return (1);

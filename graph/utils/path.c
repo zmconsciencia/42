@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:20:46 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 16:19:15 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:13:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ char	**ft_matrixdup(char **map)
 
 	i = 0;
 	map2 = malloc(sizeof (char *) * (data()->map.map_lines + 1));
+	if (map2[0][0] != '1')
+	{
+		free(map2);
+		return (NULL);
+	}
 	while (i < data()->map.map_lines)
 	{
 		j = -1;
@@ -67,7 +72,7 @@ int	path_finder(char	**map)
 		{
 			if (map[j][i] == 'P' || map[j][i] == 'C' || map[j][i] == 'E')
 			{
-				ft_putstr_fd("Impossible path", 2);
+				ft_putstr_fd("Error.\n", 2);
 				return (0);
 			}
 			i++;

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:36:47 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 14:27:28 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:10:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	paint_floor(int w, int h, char **map)
 	while (map[++j])
 	{
 		i = -1;
+		w = 0;
 		while (map[j][++i] && map[j][i] != '\n')
 		{
 			if (map[j][i] == '1')
@@ -86,8 +87,12 @@ void	paint_icon(t_img *image, int x, int y)
 		i = 0;
 		while (i < image->w)
 		{
-			my_mlx_pixel_put(data()->image, x + i, y + j, \
-				my_mlx_pixel_get(*image, i, j));
+			if (x + i < (data())->map.map_elem * 32 && \
+				y + j < (data())->map.map_lines * 32)
+			{	
+				my_mlx_pixel_put(data()->image, x + i, y + j, \
+					my_mlx_pixel_get(*image, i, j));
+			}
 			i++;
 		}
 		j++;
