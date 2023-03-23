@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:15:11 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/23 17:20:09 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:22:01 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ void	ft_free(void);
 int		free_arr(char **map);
 char	*ft_itoa(int n);
 void	move_handle(int kp);
-int	increase_counter(int kp);
+int		increase_counter(int kp);
 
 #endif
