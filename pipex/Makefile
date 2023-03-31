@@ -1,6 +1,6 @@
 SOURCES = main.c
 
-SOURCESUTILS =	
+SOURCESUTILS =	parse.c
 
 SOURCESUTILSF = $(addprefix sources/, $(SOURCESUTILS))
 
@@ -8,10 +8,8 @@ OBJECTS = $(SOURCES:.c=.o)
 
 OBJECTSUTILS = $(SOURCESUTILSF:.c=.o)
 
-OBJECTSGNL = $(SOURCEGNLF:.c=.o)
-
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -g -Iincs
+	$(CC) -Wall -Wextra -Werror -g -I/usr/include -Iincs -O3 -c $< -o $@
 
 NAME = pipex
 
@@ -21,7 +19,7 @@ CFLAGS = -Wall -Werror -Wextra -g -Iincs #-fsanitize=address
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(OBJECTSUTILS) $(OBJECTSGNL)
+$(NAME): $(OBJECTS) $(OBJECTSUTILS)
 	@$(CC) $(CFLAGS) $(OBJECTS) $(OBJECTSUTILS) -o $(NAME)
 
 clean:
