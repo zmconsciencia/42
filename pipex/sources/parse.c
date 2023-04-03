@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:23:36 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/03 13:50:29 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:19:19 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int	parse_infile(char *infile)
 	int	fd;
 
 	fd = open(infile, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_fd("Error \n", 2);
+		exit(1);
+	}
 	return (fd);
 }
 

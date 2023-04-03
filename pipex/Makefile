@@ -1,6 +1,8 @@
 SOURCES = main.c
 
-SOURCESUTILS =	parse.c
+SOURCESUTILS =	parse.c \
+				utils.c \
+				ft_split.c
 
 SOURCESUTILSF = $(addprefix sources/, $(SOURCESUTILS))
 
