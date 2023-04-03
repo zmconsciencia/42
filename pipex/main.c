@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:14:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/31 14:33:04 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:51:17 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	main(int ac, char **av)
 	{	
 		while (++i < ac)
 		{
-			if (i == 1 || i == 4)
-				printf("Files: %s \n", av[i]);
-			else
-				printf("Commands: %s \n", av[i]);
+			if (i == 1)
+				printf("%d \n", parse_infile(av[i]));
+			else if (i == 4)
+				printf("%d \n", parse_outfile(av[i]));
 		}
 	}
 	printf("Invalid number of arguments. \n");

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:13:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/03/31 14:31:26 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:51:43 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <stdio.h>
+
+int	parse_infile(char	*infile);
+int	parse_outfile(char *outfile);
 
 #endif
