@@ -6,29 +6,22 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:14:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/03 15:19:42 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:34:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **envp)
 {
-	int	i;
+	int	f1;
+	int	f2;
 
-	i = -1;
-	if (ac == 5)
-	{	
-		while (++i < ac)
-		{
-			if (i == 1)
-				printf("%d \n", parse_infile(av[i]));
-			else if (i == 2 || i == 3)
-				ft_split(av[i], ' ');
-			else if (i == 4)
-				printf("%d \n", parse_outfile(av[i]));
-		}
-	}
-	else
-		ft_putstr_fd("Error. \n", 2);
+	(void)ac;
+	f1 = open(av[1], O_RDONLY);
+	f2 = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (f1 < 0 || f2 < 0)
+		return (-1);
+	get_path(envp);
+	return (0);
 }
