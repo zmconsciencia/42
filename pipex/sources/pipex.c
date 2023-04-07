@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 15:14:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/07 11:04:19 by jabecass         ###   ########.fr       */
+/*   Created: 2023/04/07 13:34:50 by jabecass          #+#    #+#             */
+/*   Updated: 2023/04/07 13:45:26 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av, char **envp)
+void	pipex(int f1, int f2, char *cmd1, char *cmd2)
 {
-	if (ac == 5)
-	{
-		if (parse_files(av[1], av[4]))
-			get_path(envp);
-	}
-	else
-		ft_putstr_fd("Error. \n", 2);
-	return (0);
+	int		end[2];
+	pid_t	parent;
+
+	pipe(end);
+	parent = fork();
+	if (parent < 0)
+		return (perror("Fork: "));
+	// if (!parent)
+	// 	child_process(f1, cmd1);
+	// else
+	// 	parent_process(f2, cmd2);
 }
