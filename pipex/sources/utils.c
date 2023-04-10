@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:20:48 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/04 16:05:30 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:15:17 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,38 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	c1 = s1[i];
 	c2 = s2[i];
 	return (c1 - c2);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	len1;
+	size_t	len2;
+	char	*s3;
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	i = 0;
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	s3 = (char *)malloc(sizeof(char) * (len1 + len2 + 2));
+	if (!s3)
+		return (NULL);
+	while (i < len1)
+	{
+		s3[j] = s1[i];
+		i++;
+		j++;
+	}
+	i = 0;
+	s3[j] = '/';
+	j++;
+	while (i < len2)
+	{
+		s3[j] = s2[i];
+		i++;
+		j++;
+	}
+	s3[j] = '\0';
+	return (s3);
 }

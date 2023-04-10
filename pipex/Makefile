@@ -3,7 +3,8 @@ SOURCES = main.c
 SOURCESUTILS =	parse.c \
 				utils.c \
 				ft_split.c \
-				pipex.c
+				pipex.c \
+				utils2.c
 
 SOURCESUTILSF = $(addprefix sources/, $(SOURCESUTILS))
 
