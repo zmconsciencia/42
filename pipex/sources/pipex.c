@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:34:50 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/10 18:38:12 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:55:13 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@
 char	*check_path(char **path, char *cmd, char **envp)
 {
 	int		i;
-	int		p;
 	char	*real_path;
+	char	**scmd;
 
 	i = 0;
-	p = 0;
+	scmd = divide_command(cmd);
+	cmd = scmd[0];
 	path = get_path(envp);
 	while (path[i])
 	{
@@ -54,4 +55,22 @@ char	*check_path(char **path, char *cmd, char **envp)
 	}
 	free_array(path);
 	return (cmd);
+}
+
+char	**divide_command(char *cmd)
+{
+	char	**c;
+
+	c = ft_split(cmd, ' ');
+	return (c);
+}
+
+void	execution(char **path, char *cmd, char **env)
+{
+	char	**command;
+	char	*pathname;
+
+	pathname = check_path(path, cmd, env);
+	command = divide_command(cmd);
+	execve(pathname, command, env);
 }

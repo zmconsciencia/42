@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:13:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/10 18:21:45 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:27:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int				open_files(char *file, int flag);
 char			*ft_strjoin(char *s1, char *s2);
 void			free_array(char **arr);
 char			*check_path(char **path, char *cmd, char **envp);
+char			**divide_command(char *cmd);
+void			execution(char **path, char *cmd, char **env);
 
 #endif
