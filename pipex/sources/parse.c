@@ -6,34 +6,24 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:23:36 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/10 18:37:07 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:22:07 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	open_files(char *file, int flag)
+void	parse_files(char *infile, char *outfile)
 {
-	int	f;
-
-	f = 0;
-	if (flag)
-		f = open(file, O_RDONLY);
-	else
-		f = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	return (f);
-}
-
-int	parse_files(char *infile, char *outfile)
-{
-	int	f1;
-	int	f2;
-
-	f1 = open(infile, O_RDONLY);
-	f2 = open(outfile, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (f1 < 0 || f2 < 0)
-		return (-1);
-	return (1);
+	(data())->infile_fd = open(infile, O_RDONLY);
+	(data())->outfile_fd = open(outfile, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if ((data())->infile_fd == -1)
+	{
+		perror(infile);
+		(data())->infile_fd = open("temp", O_CREAT, 0644);
+		(data())->tempfile++;
+	}
+	if ((data())->outfile_fd == -1)
+		perror(outfile);
 }
 
 char	**get_path(char **envp)
@@ -57,3 +47,12 @@ char	**get_path(char **envp)
 	spath = ft_split(path, ':');
 	return (spath);
 }
+
+// void	switch_fds(char *infile, char *outfile)
+// {
+// 	int	arr[2];
+
+// 	pipe(arr);
+// 	dup2(data()->infile_fd, 0);
+// 	dup2(data()->outfile_fd, 1);
+// }

@@ -6,71 +6,97 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:34:50 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/11 16:55:13 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:53:32 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-// void	pipex(int f1, int f2, char *cmd1, char *cmd2)
-// {
-// 	int		end[2];
-// 	pid_t	parent;
+t_data	*data(void)
+{
+	static t_data	data;
 
-// 	(void)f1;
-// 	(void)f2;
-// 	(void)cmd1;
-// 	(void)cmd2;
-// 	pipe(end);
-// 	parent = fork();
-// 	printf("%d \n", parent);
-// 	if (parent < 0)
-// 		return (perror("Fork: "));
-// 	// if (!parent)
-// 	// 	child_process(f1, cmd1);
-// 	// else
-// 	// 	parent_process(f2, cmd2);
-// }
+	return (&data);
+}
 
-char	*check_path(char **path, char *cmd, char **envp)
+char	*check_path(char *cmd, char **envp)
 {
 	int		i;
 	char	*real_path;
 	char	**scmd;
+	char	**path;
 
 	i = 0;
-	scmd = divide_command(cmd);
-	cmd = scmd[0];
+	scmd = ft_split(cmd, ' ');
 	path = get_path(envp);
 	while (path[i])
 	{
-		real_path = ft_strjoin(path[i], cmd);
+		real_path = ft_strjoin(path[i], scmd[0]);
 		if (access(real_path, F_OK) == 0)
 		{
 			free_array(path);
+			free_array (scmd);
 			return (real_path);
 		}
 		free (real_path);
 		i++;
 	}
 	free_array(path);
-	return (cmd);
+	free_array (scmd);
+	return (ft_strdup(cmd));
 }
 
-char	**divide_command(char *cmd)
-{
-	char	**c;
-
-	c = ft_split(cmd, ' ');
-	return (c);
-}
-
-void	execution(char **path, char *cmd, char **env)
+void	execution(char *cmd, char *cmd2, char **env)
 {
 	char	**command;
 	char	*pathname;
+	int		fd;
+	int		pipe_fds[2];
 
-	pathname = check_path(path, cmd, env);
-	command = divide_command(cmd);
-	execve(pathname, command, env);
+	pathname = check_path(cmd, env);
+	command = ft_split(cmd, ' ');
+	if (pipe(pipe_fds) == -1)
+		perror("");
+	fd = fork();
+	if (fd == -1)
+		perror("");
+	if (fd == 0)
+	{
+		printf("%s \n", pathname);
+		dup2(data()->infile_fd, 0);
+		dup2(pipe_fds[1], 1);
+		close((data())->infile_fd);
+		close((data())->outfile_fd);
+		close(pipe_fds[0]);
+		close(pipe_fds[1]);
+		execve(pathname, command, env);
+		free (pathname);
+		free_array (command);
+		exit(1);
+	}
+	free_array (command);
+	free (pathname);
+	pathname = check_path(cmd2, env);
+	command = ft_split(cmd2, ' ');
+	fd = fork();
+	if (fd == 0)
+	{
+		printf("%s \n", pathname);
+		dup2(pipe_fds[0], 0);
+		dup2((data())->outfile_fd, 1);
+		close((data())->infile_fd);
+		close((data())->outfile_fd);
+		close(pipe_fds[0]);
+		close(pipe_fds[1]);
+		execve(pathname, command, env);
+		free (pathname);
+		free_array (command);
+		exit(1);
+	}
+	close((data())->infile_fd);
+	close((data())->outfile_fd);
+	close(pipe_fds[0]);
+	close(pipe_fds[1]);
+	free_array (command);
+	free (pathname);
 }

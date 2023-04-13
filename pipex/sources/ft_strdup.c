@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 15:14:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/13 17:52:12 by jabecass         ###   ########.fr       */
+/*   Created: 2022/10/26 15:46:07 by jabecass          #+#    #+#             */
+/*   Updated: 2023/04/13 16:18:00 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av, char **envp)
+char	*ft_strdup(char *s)
 {
-	int	i;
+	char	*new;
+	int		i;
 
-	i = ac - 3;
-	if (ac == 5)
+	i = 0;
+	new = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!new)
+		return (NULL);
+	while (s[i])
 	{
-		parse_files(av[1], av[4]);
-		execution(av[2], av[3], envp);
-		while (i)
-		{
-			waitpid(-1, NULL, 0);
-			write(2, "a\n", 2);
-			i--;
-		}
-		if (data()->tempfile)
-			unlink("temp");
+		new[i] = s[i];
+		i++;
 	}
-	else
-		ft_putstr_fd("Error. \n", 2);
-	return (0);
+	new[i] = '\0';
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:20:48 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/10 16:15:17 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:35:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ unsigned int	ft_strlen(char *str)
 	int	i;
 
 	i = -1;
+	if (!str)
+		return (0);
 	while (str[++i])
 		;
 	return (i);
