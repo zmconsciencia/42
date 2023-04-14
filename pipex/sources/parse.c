@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:23:36 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/13 17:22:07 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:30:46 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	parse_files(char *infile, char *outfile)
 		(data())->tempfile++;
 	}
 	if ((data())->outfile_fd == -1)
+	{
 		perror(outfile);
+		exit(1);
+	}
 }
 
 char	**get_path(char **envp)

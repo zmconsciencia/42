@@ -5,7 +5,8 @@ SOURCESUTILS =	parse.c \
 				ft_split.c \
 				pipex.c \
 				utils2.c \
-				ft_strdup.c
+				ft_strdup.c \
+				ft_close.c
 
 SOURCESUTILSF = $(addprefix sources/, $(SOURCESUTILS))
 

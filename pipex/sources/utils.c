@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:20:48 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/13 16:35:08 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:50:27 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,20 +99,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s3)
 		return (NULL);
 	while (i < len1)
-	{
-		s3[j] = s1[i];
-		i++;
-		j++;
-	}
+		s3[j++] = s1[i++];
 	i = 0;
 	s3[j] = '/';
 	j++;
 	while (i < len2)
-	{
-		s3[j] = s2[i];
-		i++;
-		j++;
-	}
+		s3[j++] = s2[i++];
 	s3[j] = '\0';
 	return (s3);
 }

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:34:50 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/13 17:53:32 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:27:32 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,34 @@ char	*check_path(char *cmd, char **envp)
 	return (ft_strdup(cmd));
 }
 
+void	first_cmd(int *pipe_fds, char *pathname, char **command, char **env)
+{
+	if ((data())->tempfile)
+	{
+		free (pathname);
+		free_array (command);
+		exit(1);
+	}
+	dup2(data()->infile_fd, 0);
+	dup2(pipe_fds[1], 1);
+	ft_close(pipe_fds);
+	execve(pathname, command, env);
+	free (pathname);
+	free_array (command);
+	exit(1);
+}
+
+void	second_cmd(int *pipe_fds, char *pathname, char **command, char **env)
+{
+	dup2(pipe_fds[0], 0);
+	dup2((data())->outfile_fd, 1);
+	ft_close(pipe_fds);
+	execve(pathname, command, env);
+	free (pathname);
+	free_array (command);
+	exit(1);
+}
+
 void	execution(char *cmd, char *cmd2, char **env)
 {
 	char	**command;
@@ -61,42 +89,15 @@ void	execution(char *cmd, char *cmd2, char **env)
 	if (fd == -1)
 		perror("");
 	if (fd == 0)
-	{
-		printf("%s \n", pathname);
-		dup2(data()->infile_fd, 0);
-		dup2(pipe_fds[1], 1);
-		close((data())->infile_fd);
-		close((data())->outfile_fd);
-		close(pipe_fds[0]);
-		close(pipe_fds[1]);
-		execve(pathname, command, env);
-		free (pathname);
-		free_array (command);
-		exit(1);
-	}
+		first_cmd(pipe_fds, pathname, command, env);
 	free_array (command);
 	free (pathname);
 	pathname = check_path(cmd2, env);
 	command = ft_split(cmd2, ' ');
 	fd = fork();
 	if (fd == 0)
-	{
-		printf("%s \n", pathname);
-		dup2(pipe_fds[0], 0);
-		dup2((data())->outfile_fd, 1);
-		close((data())->infile_fd);
-		close((data())->outfile_fd);
-		close(pipe_fds[0]);
-		close(pipe_fds[1]);
-		execve(pathname, command, env);
-		free (pathname);
-		free_array (command);
-		exit(1);
-	}
-	close((data())->infile_fd);
-	close((data())->outfile_fd);
-	close(pipe_fds[0]);
-	close(pipe_fds[1]);
+		second_cmd(pipe_fds, pathname, command, env);
+	ft_close(pipe_fds);
 	free_array (command);
 	free (pathname);
 }

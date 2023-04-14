@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:13:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/04/13 17:31:24 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:59:53 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void			execution(char *cmd, char *cmd2, char **env);
 t_data			*data(void);
 void			switch_fds(char *infile, char *outfile);
 char			*ft_strdup(char *s);
+void			ft_close(int *pipe_fds);
 
 #endif
