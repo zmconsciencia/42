@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
+/*   Updated: 2023/07/04 16:30:44 by jabecass         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -6,6 +18,22 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+
+typedef struct s_data
+{
+	int				nb_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				nb_eat;
+	int				dead;
+	int				*forks;
+	int				*eat_count;
+	int				*last_eat;
+	pthread_mutex_t	*mutex;
+	pthread_mutex_t	*print;
+	pthread_mutex_t	*dead_mutex;
+}					t_data;
 
 //utils
 int			ft_atoi(const char *str);
