@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:23:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/04 16:38:50 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:54:38 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,9 @@ int	main(int ac, char **av)
 	i = 0;
 	if (ac == 6)
 	{
-		while (i++ < ac - 1)
-		{
-			if (i == 1)
-				data()->nb_philo = ft_atoi(av[i]);
-			else if (i == 2)
-				data()->time_to_die = ft_atoi(av[i]);
-			else if (i == 3)
-				data()->time_to_eat = ft_atoi(av[i]);
-			else if (i == 4)
-				data()->time_to_sleep = ft_atoi(av[i]);
-			else if (i == 5)
-				data()->nb_eat = ft_atoi(av[i]); 
-		}
+		while (++i < 6)
+			err_handle(ft_atoi(av[i]), i);
+		parser(av);
 		print_program();
 	}
 	else

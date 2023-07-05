@@ -1,5 +1,7 @@
 SOURCES = SRCS/main.c
 
+SOURCESPARSE = parse.c
+
 SOURCESUTILS =	ft_atoi.c \
 				ft_itoa.c \
 				ft_strlen.c \
@@ -10,9 +12,13 @@ SOURCESUTILS =	ft_atoi.c \
 
 SOURCESUTILSF = $(addprefix SRCS/UTILS/, $(SOURCESUTILS))
 
+SOURCESPARSEF = $(addprefix SRCS/PARSE/, $(SOURCESPARSE))
+
 OBJECTS = $(SOURCES:.c=.o)
 
 OBJECTSUTILS = $(SOURCESUTILSF:.c=.o)
+
+OBJECTSPARSE = $(SOURCESPARSEF:.c=.o)
 
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -g -IINCS -c $< -o $@
@@ -25,11 +31,11 @@ CFLAGS = -Wall -Werror -Wextra -g -IINCS #-fsanitize=address
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(OBJECTSUTILS)
-	@$(CC) $(CFLAGS) $(OBJECTS) $(OBJECTSUTILS) -o $(NAME)
+$(NAME): $(OBJECTS) $(OBJECTSUTILS) $(OBJECTSPARSE)
+	@$(CC) $(CFLAGS) $(OBJECTS) $(OBJECTSUTILS) $(OBJECTSPARSE) -o $(NAME)
 
 clean:
-	@rm -f SRCS/*.o SRCS/UTILS/*.o
+	@rm -f SRCS/*/*.o
 
 fclean: clean
 	@rm -f philo

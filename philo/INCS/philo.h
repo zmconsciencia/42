@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/04 16:30:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:54:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct s_data
 {
+	int				err;
 	int				nb_philo;
 	int				time_to_die;
 	int				time_to_eat;
@@ -34,6 +35,13 @@ typedef struct s_data
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*dead_mutex;
 }					t_data;
+
+//parse
+void		parser(char **av);
+void		err_handle(int n, int err);
+
+//data
+t_data		*data(void);
 
 //utils
 int			ft_atoi(const char *str);
