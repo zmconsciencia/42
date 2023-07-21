@@ -6,13 +6,13 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:38:21 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/04 01:13:35 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:40:37 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, int *e)
 {
 	size_t	i;
 	size_t	sign;
@@ -34,5 +34,7 @@ int	ft_atoi(const char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
+	if (str[i] != '\0')
+		*e = 1;
 	return (res * sign);
 }

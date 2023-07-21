@@ -1,4 +1,4 @@
-SOURCES = SRCS/main.c
+SOURCES = main.c
 
 SOURCESPARSE = parse.c
 
@@ -21,13 +21,13 @@ OBJECTSUTILS = $(SOURCESUTILSF:.c=.o)
 OBJECTSPARSE = $(SOURCESPARSEF:.c=.o)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -g -IINCS -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -g -pthread -IINCS -c $< -o $@
 
 NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g -IINCS #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -pthread -IINCS #-fsanitize=address
 
 all: $(NAME)
 
@@ -35,7 +35,7 @@ $(NAME): $(OBJECTS) $(OBJECTSUTILS) $(OBJECTSPARSE)
 	@$(CC) $(CFLAGS) $(OBJECTS) $(OBJECTSUTILS) $(OBJECTSPARSE) -o $(NAME)
 
 clean:
-	@rm -f SRCS/*/*.o
+	@rm -f SRCS/*/*.o *.o
 
 fclean: clean
 	@rm -f philo

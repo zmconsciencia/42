@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:23:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/05 14:54:38 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:25:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,42 @@ void	print_program(void)
 	printf("time_to_die: %d\n", data()->time_to_die);
 	printf("time_to_eat: %d\n", data()->time_to_eat);
 	printf("time_to_sleep: %d\n", data()->time_to_sleep);
-	printf("nb_eat: %d\n", data()->nb_eat);
+	if (data()->nb_eat)
+		printf("nb_eat: %d\n", data()->nb_eat);
+}
+
+void	*routine(void *a)
+{
+	(void)a;
+	printf("I'm philo number: %d and I have %d time to eat.\n", data()->philos->id, data()->time_to_eat);
+	return (0);
+}
+
+int	philo_to_thread(void)
+{
+	int	i;
+
+	i = -1;
+	data()->tid = malloc(sizeof(pthread_t) * data()->nb_philo);
+	if (!data()->tid)
+		return (0);
+	data()->philos = malloc(sizeof(t_philo) * data()->nb_philo);
+	if (!data()->philos)
+		return (0);
+	while (++i < data()->nb_philo)
+	{
+		data()->philos->id = i;
+		if (pthread_create(&data()->tid[i], NULL, &routine, NULL))
+			return (1);
+		usleep(1);
+	}
+	i = -1;
+	while (++i < data()->nb_philo)
+	{
+		if (pthread_join(data()->tid[i], NULL))
+			return (2);
+	}
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -43,12 +78,15 @@ int	main(int ac, char **av)
 	int	i;
 
 	i = 0;
-	if (ac == 6)
+	if (ac == 5)
 	{
-		while (++i < 6)
-			err_handle(ft_atoi(av[i]), i);
 		parser(av);
-		print_program();
+		philo_to_thread();
+	}
+	else if (ac == 6)
+	{
+		parser(av);
+		philo_to_thread();
 	}
 	else
 		print_error(0);

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/05 14:54:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:11:02 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+
+typedef struct s_philo
+{
+	pthread_t		t1;
+	int				id;
+	int				status;
+	int				eat_cont;
+	int				eating;
+	int				time_to_die;
+	pthread_mutex_t	lock;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
+}		t_philo;
 
 typedef struct s_data
 {
@@ -31,6 +44,8 @@ typedef struct s_data
 	int				*forks;
 	int				*eat_count;
 	int				*last_eat;
+	pthread_t		*tid;
+	struct s_philo	*philos;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*dead_mutex;
@@ -38,13 +53,13 @@ typedef struct s_data
 
 //parse
 void		parser(char **av);
-void		err_handle(int n, int err);
+void		err_handle(int status);
 
 //data
 t_data		*data(void);
 
 //utils
-int			ft_atoi(const char *str);
+int			ft_atoi(const char *str, int *e);
 char		*ft_itoa(int n);
 size_t		ft_strlen(const char *str);
 void		ft_putchar_fd(char c, int fd);
