@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/21 18:11:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:39:57 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <sys/time.h>
 
 typedef struct s_philo
 {
@@ -34,6 +35,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
+	time_t			start_time;
 	int				err;
 	int				nb_philo;
 	int				time_to_die;

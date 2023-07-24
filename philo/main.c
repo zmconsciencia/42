@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:23:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/21 18:25:45 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:25:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,33 @@ void	print_program(void)
 		printf("nb_eat: %d\n", data()->nb_eat);
 }
 
-void	*routine(void *a)
+int	gettime(void)
 {
-	(void)a;
-	printf("I'm philo number: %d and I have %d time to eat.\n", data()->philos->id, data()->time_to_eat);
+	struct timeval	tv;
+	int				time;
+
+	time = 0;
+	if (!gettimeofday(&tv, NULL))
+	{
+		time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+		time = time - data()->start_time;
+	}
+	return (time);
+}
+
+void	*routine(void *philos_pointer)
+{
+	t_philo			*philo;
+
+	philo = (t_philo *) philos_pointer;
+	if (philo->id == 0 || philo->id % 2 == 0)
+	{
+		printf("%dms EVEN is eating ID:%d\n", gettime(), philo->id);
+		philo->eating = 1;
+	}
+	else
+		printf("%dms ODD is sleeping ID:%d\n", gettime(), philo->id);
+	philo->eating = 0;
 	return (0);
 }
 
@@ -60,9 +83,12 @@ int	philo_to_thread(void)
 	while (++i < data()->nb_philo)
 	{
 		data()->philos->id = i;
-		if (pthread_create(&data()->tid[i], NULL, &routine, NULL))
+		if (pthread_create(&data()->tid[i], NULL, &routine, data()->philos))
 			return (1);
-		usleep(1);
+		if (data()->philos->eating)
+			usleep(data()->time_to_eat * 1000);
+		else
+			usleep(data()->time_to_sleep * 1000);
 	}
 	i = -1;
 	while (++i < data()->nb_philo)
@@ -78,6 +104,7 @@ int	main(int ac, char **av)
 	int	i;
 
 	i = 0;
+	data()->start_time = gettime();
 	if (ac == 5)
 	{
 		parser(av);
