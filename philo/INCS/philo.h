@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/24 15:39:57 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:43:26 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				nb_eat;
 	int				dead;
-	int				*forks;
 	int				*eat_count;
 	int				*last_eat;
 	pthread_t		*tid;
 	struct s_philo	*philos;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*dead_mutex;
@@ -56,6 +56,7 @@ typedef struct s_data
 //parse
 void		parser(char **av);
 void		err_handle(int status);
+void		fork_init(t_data *data);
 
 //data
 t_data		*data(void);

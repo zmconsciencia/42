@@ -27,7 +27,7 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g -pthread -IINCS #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -pthread -IINCS #-fsanitize=thread
 
 all: $(NAME)
 
