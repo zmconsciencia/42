@@ -1,6 +1,7 @@
 SOURCES = main.c
 
-SOURCESPARSE = parse.c
+SOURCESPARSE = parse.c \
+				init.c
 
 SOURCESUTILS =	ft_atoi.c \
 				ft_itoa.c \
@@ -8,7 +9,8 @@ SOURCESUTILS =	ft_atoi.c \
 				ft_putstr_fd.c \
 				ft_putchar_fd.c \
 				ft_putendl_fd.c \
-				ft_strdup.c
+				ft_strdup.c \
+				ft_calloc.c
 
 SOURCESUTILSF = $(addprefix SRCS/UTILS/, $(SOURCESUTILS))
 
