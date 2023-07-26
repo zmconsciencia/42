@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/25 18:43:26 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:02:56 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <sys/time.h>
+# include <string.h>
 
 typedef struct s_philo
 {
@@ -31,6 +32,7 @@ typedef struct s_philo
 	pthread_mutex_t	lock;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
+	struct s_philo	*next;
 }		t_philo;
 
 typedef struct s_data
@@ -47,6 +49,8 @@ typedef struct s_data
 	int				*last_eat;
 	pthread_t		*tid;
 	struct s_philo	*philos;
+	struct s_philo	*head;
+	struct s_philo	*tail;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t	*print;
@@ -57,6 +61,7 @@ typedef struct s_data
 void		parser(char **av);
 void		err_handle(int status);
 void		fork_init(t_data *data);
+void		init(t_data *data);
 
 //data
 t_data		*data(void);
@@ -69,5 +74,6 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 char		*ft_strdup(const char *s);
+void		*ft_calloc(size_t nmemb, size_t size);
 
 #endif
