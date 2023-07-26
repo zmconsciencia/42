@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/26 14:02:56 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:54:58 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ void		parser(char **av);
 void		err_handle(int status);
 void		fork_init(t_data *data);
 void		init(t_data *data);
+
+//time
+int			gettime(void);
 
 //data
 t_data		*data(void);

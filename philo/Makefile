@@ -1,7 +1,8 @@
 SOURCES = main.c
 
 SOURCESPARSE = parse.c \
-				init.c
+				init.c \
+				time.c
 
 SOURCESUTILS =	ft_atoi.c \
 				ft_itoa.c \
