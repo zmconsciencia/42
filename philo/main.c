@@ -42,9 +42,6 @@ int	philo_to_thread(t_data *data)
 
 int	main(int ac, char **av)
 {
-	int	i;
-
-	i = 0;
 	data()->start_time = gettime();
 	if (ac == 5)
 	{
