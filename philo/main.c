@@ -37,8 +37,10 @@ void	*routine(void *arg)
 	while (1)
 	{
 		pickforks(philo);
+		philo->status = 1;
 		printf("%d philo %d is eating.\n", gettime(), philo->id);
 		usleep(data()->time_to_eat * 1000);
+		philo->status = 0;
 		pthread_mutex_unlock(philo->r_fork);
 		pthread_mutex_unlock(philo->l_fork);
 		printf("%d philo %d is sleeping.\n", gettime(), philo->id);
@@ -48,6 +50,35 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
+void	unalive_philo(t_data *data)
+{
+	t_philo	*philo;
+
+	philo = data->head;
+	while (philo != NULL)
+	{
+		pthread_mutex_lock(data->dead_mutex);
+		philo = philo->next;
+	}
+	philo = data->head;
+	while (philo != NULL)
+	{
+		data->dead = 1;
+		philo = philo->next;
+	}
+	philo = data->head;
+	while (philo != NULL)
+	{
+		pthread_mutex_unlock(data->dead_mutex);
+		philo = philo->next;
+	}
+}
+
+// void	check_death(t_data *data)
+// {
+
+// }
+
 int	philo_to_thread(t_data *data)
 {
 	t_philo	*philo;
@@ -56,6 +87,12 @@ int	philo_to_thread(t_data *data)
 	while (philo != NULL)
 	{
 		pthread_create(&philo->t1, NULL, &routine, philo);
+		philo = philo->next;
+	}
+	philo = data->head;
+	while (philo != NULL)
+	{
+		pthread_join(philo->t1, NULL);
 		philo = philo->next;
 	}
 	return (1);
@@ -69,6 +106,7 @@ int	main(int ac, char **av)
 		parser(av);
 		init(data());
 		philo_to_thread(data());
+		printf("SUCCESS.\n");
 	}
 	else
 		printf("ERROR.\n");

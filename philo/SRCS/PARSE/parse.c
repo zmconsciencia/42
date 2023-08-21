@@ -47,10 +47,7 @@ void	parser(char **av)
 		(data())->time_to_eat = ft_atoi(av[3], &status);
 		(data())->time_to_sleep = ft_atoi(av[4], &status);
 		if (av[5])
-		{
 			(data())->nb_eat = ft_atoi(av[5], &status); 
-			printf("yessir\n");
-		}
 	}
 	err_handle(status);
 }

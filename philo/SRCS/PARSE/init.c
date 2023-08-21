@@ -20,6 +20,9 @@ void	alloc(t_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	if (!data->forks)
 		return ;
+	data->dead_mutex = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
+	if (!data->dead_mutex)
+		return ;
 }
 
 void	fork_init(t_data *data)
