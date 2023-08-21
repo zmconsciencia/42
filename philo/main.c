@@ -27,6 +27,27 @@ void	pickforks(t_philo *philo)
 	printf("%d philo %d takes fork.\n", gettime(), philo->id);
 }
 
+void	*routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	if (philo->id % 2 == 0)
+		usleep(100);
+	while (1)
+	{
+		pickforks(philo);
+		printf("%d philo %d is eating.\n", gettime(), philo->id);
+		usleep(data()->time_to_eat * 1000);
+		pthread_mutex_unlock(philo->r_fork);
+		pthread_mutex_unlock(philo->l_fork);
+		printf("%d philo %d is sleeping.\n", gettime(), philo->id);
+		usleep(data()->time_to_sleep * 1000);
+		printf("%d philo %d is thinking.\n", gettime(), philo->id);
+	}
+	return (NULL);
+}
+
 int	philo_to_thread(t_data *data)
 {
 	t_philo	*philo;
@@ -34,7 +55,7 @@ int	philo_to_thread(t_data *data)
 	philo = data->head;
 	while (philo != NULL)
 	{
-		printf("%d, %d, L: %p, R: %p\n", philo->id, philo->time_to_die, philo->l_fork, philo->r_fork);
+		pthread_create(&philo->t1, NULL, &routine, philo);
 		philo = philo->next;
 	}
 	return (1);
@@ -43,12 +64,7 @@ int	philo_to_thread(t_data *data)
 int	main(int ac, char **av)
 {
 	data()->start_time = gettime();
-	if (ac == 5)
-	{
-		parser(av);
-		philo_to_thread(data());
-	}
-	else if (ac == 6)
+	if (ac == 5 || ac == 6)
 	{
 		parser(av);
 		init(data());
