@@ -12,10 +12,10 @@
 
 #include "philo.h"
 
-int	gettime(void)
+time_t	gettime(void)
 {
 	struct timeval	tv;
-	int				time;
+	time_t			time;
 
 	time = 0;
 	if (!gettimeofday(&tv, NULL))

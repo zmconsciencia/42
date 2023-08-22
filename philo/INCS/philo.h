@@ -27,11 +27,11 @@ typedef struct s_philo
 	int				id;
 	int				status;
 	int				eat_cont;
-	int				eating;
-	int				time_to_die;
-	pthread_mutex_t	lock;
+	time_t			time_to_die;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	dead_mutex;
+	pthread_mutex_t	c_time;
 	struct s_philo	*next;
 }		t_philo;
 
@@ -44,17 +44,10 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_eat;
-	int				dead;
-	int				*eat_count;
-	int				*last_eat;
-	pthread_t		*tid;
 	struct s_philo	*philos;
 	struct s_philo	*head;
 	struct s_philo	*tail;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	*mutex;
-	pthread_mutex_t	*print;
-	pthread_mutex_t	*dead_mutex;
 }					t_data;
 
 //parse
@@ -64,7 +57,7 @@ void		fork_init(t_data *data);
 void		init(t_data *data);
 
 //time
-int			gettime(void);
+time_t		gettime(void);
 
 //data
 t_data		*data(void);
@@ -78,5 +71,6 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 char		*ft_strdup(const char *s);
 void		*ft_calloc(size_t nmemb, size_t size);
+void		check_death(t_data *data);
 
 #endif
