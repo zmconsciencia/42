@@ -25,3 +25,20 @@ time_t	gettime(void)
 	}
 	return (time);
 }
+
+void	my_usleep(int time_ms)
+{
+	struct	timeval t;
+	__uint64_t		start;
+	__uint64_t		end;
+
+	gettimeofday(&t, NULL);
+	start = (t.tv_sec * 1000) + (t.tv_usec / 1000);
+	end = start + time_ms;
+	while (start < end)
+	{
+		gettimeofday(&t, NULL);
+		start = (t.tv_sec * 1000) + (t.tv_usec / 1000);
+		usleep(100);
+	}
+}

@@ -32,6 +32,7 @@ typedef struct s_philo
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	c_time;
+	pthread_mutex_t c_eat;
 	struct s_philo	*next;
 }		t_philo;
 
@@ -58,6 +59,7 @@ void		init(t_data *data);
 
 //time
 time_t		gettime(void);
+void		my_usleep(int time_ms);
 
 //data
 t_data		*data(void);
