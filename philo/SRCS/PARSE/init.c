@@ -37,6 +37,7 @@ t_philo	*init_philo(int id, t_data *data)
 	philo->time_to_die = data->time_to_die;
 	philo->l_fork = &data->forks[id];
 	philo->r_fork = &data->forks[(id + 1) % data->nb_philo];
+	philo->eat_count = 0;
 	return (philo);
 }
 

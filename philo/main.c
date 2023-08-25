@@ -60,6 +60,9 @@ void	*routine(void *arg)
 		philo->time_to_die = gettime() + data()->time_to_die;
 		pthread_mutex_unlock(&philo->dead_mutex);
 		my_usleep(data()->time_to_eat);
+		pthread_mutex_lock(&philo->c_eat);
+		philo->eat_count++;
+		pthread_mutex_unlock(&philo->c_eat);
 		pthread_mutex_unlock(philo->r_fork);
 		pthread_mutex_unlock(philo->l_fork);
 		pthread_mutex_lock(&philo->dead_mutex);
@@ -100,9 +103,11 @@ void	unalive_philo(t_data *data)
 
 void	check_death(t_data *data)
 {
+	int		reps;
 	t_philo	*philo;
 
 	philo = data->head;
+	reps = 0;
 	while (philo != NULL)
 	{
 		pthread_mutex_lock(&philo->c_time);
@@ -114,8 +119,14 @@ void	check_death(t_data *data)
 			return ;
 		}
 		pthread_mutex_unlock(&philo->c_time);
+		pthread_mutex_lock(&philo->c_eat);
+		if (philo->eat_count == data->nb_eat - 1)
+			reps++;
+		pthread_mutex_unlock(&philo->c_eat);
 		philo = philo->next;
 	}
+	if (reps == data->nb_philo)
+		unalive_philo(data);
 }
 
 int	philo_to_thread(t_data *data)
@@ -156,15 +167,22 @@ int	main(int ac, char **av)
 	data()->start_time = gettime();
 	if (ac == 5 || ac == 6)
 	{
-		parser(av);
-		init(data());
-		while (philo != NULL)
+		if (parser(av))
 		{
-			pthread_mutex_init(&philo->c_time, NULL);
-			pthread_mutex_init(&philo->dead_mutex, NULL);
-			philo = philo->next;
+			if (!data()->err)
+			{
+				init(data());
+				while (philo != NULL)
+				{
+					pthread_mutex_init(&philo->c_time, NULL);
+					pthread_mutex_init(&philo->dead_mutex, NULL);
+					philo = philo->next;
+				}
+				philo_to_thread(data());
+			}
+			else
+				printf("ERROR.\n");
 		}
-		philo_to_thread(data());
 	}
 	else
 		printf("ERROR.\n");

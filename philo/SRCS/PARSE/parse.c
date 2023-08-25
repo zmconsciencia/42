@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	set_limits(int n, int err)
+int	set_limits(int n, int err)
 {
 	if (err == 1)
 	{
@@ -24,30 +24,26 @@ void	set_limits(int n, int err)
 		if (n < 0)
 			data()->err = 1;
 	}
+	return (n);
 }
 
-void	err_handle(int status)
-{
-	if (data()->err || status)
-	{
-		printf("INVALID ARGUMENT\n");
-		exit(EXIT_FAILURE);
-	}
-}
-
-void	parser(char **av)
+int	parser(char **av)
 {
 	int	status;
 
 	status = 0;
-	if (!data()->err)
+	if (av[1][0] == '1')
 	{
-		(data())->nb_philo = ft_atoi(av[1], &status);
-		(data())->time_to_die = ft_atoi(av[2], &status);
-		(data())->time_to_eat = ft_atoi(av[3], &status);
-		(data())->time_to_sleep = ft_atoi(av[4], &status);
-		if (av[5])
-			(data())->nb_eat = ft_atoi(av[5], &status); 
+		printf("%d 1 died\n", ft_atoi(av[2], &status));
+		return (0);
 	}
-	err_handle(status);
+	(data())->nb_philo = set_limits(ft_atoi(av[1], &status), 1);
+	(data())->time_to_die = set_limits(ft_atoi(av[2], &status), 0);
+	(data())->time_to_eat = set_limits(ft_atoi(av[3], &status), 0);
+	(data())->time_to_sleep = set_limits(ft_atoi(av[4], &status), 0);
+	if (av[5])
+		(data())->nb_eat = set_limits(ft_atoi(av[5], &status), 0);
+	if (!data()->err && status)
+		data()->err = 1;
+	return (1);
 }

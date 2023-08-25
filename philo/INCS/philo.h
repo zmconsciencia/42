@@ -26,7 +26,7 @@ typedef struct s_philo
 	pthread_t		t1;
 	int				id;
 	int				status;
-	int				eat_cont;
+	int				eat_count;
 	time_t			time_to_die;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -52,7 +52,7 @@ typedef struct s_data
 }					t_data;
 
 //parse
-void		parser(char **av);
+int			parser(char **av);
 void		err_handle(int status);
 void		fork_init(t_data *data);
 void		init(t_data *data);
