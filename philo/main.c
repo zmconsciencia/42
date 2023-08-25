@@ -148,14 +148,19 @@ int	philo_to_thread(t_data *data)
 		pthread_join(philo->t1, NULL);
 		philo = philo->next;
 	}
+	philo = data->head;
 	while (philo != NULL)
-	{
+	{	
+		data->head = philo->next;
 		pthread_mutex_destroy(&philo->c_time);
 		pthread_mutex_destroy(&philo->dead_mutex);
 		pthread_mutex_destroy(philo->l_fork);
 		pthread_mutex_destroy(philo->r_fork);
-		philo = philo->next;
+		free(philo); 
+		philo = data->head;
 	}
+	pthread_mutex_destroy(data->forks);
+	free(data->forks);
 	return (1);
 }
 
