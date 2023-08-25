@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:25:30 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/26 14:49:45 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/25 19:10:34 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	add_to_list(t_philo *philo)
 		while (curr->next != 0)
 			curr = curr->next;
 		curr->next = philo;
-		if (!curr->next)
-			data()->tail = philo;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/08/24 16:25:20 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/25 19:10:03 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_data
 	int				nb_eat;
 	struct s_philo	*philos;
 	struct s_philo	*head;
-	struct s_philo	*tail;
 	pthread_mutex_t	*forks;
 }					t_data;
 
@@ -60,6 +59,10 @@ void		init(t_data *data);
 //time
 time_t		gettime(void);
 void		my_usleep(int time_ms);
+
+//threads
+int			philo_to_thread(t_data *data);
+void		check_death(t_data *data);
 
 //data
 t_data		*data(void);
@@ -74,5 +77,7 @@ void		ft_putendl_fd(char *s, int fd);
 char		*ft_strdup(const char *s);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		check_death(t_data *data);
+void		free_all(t_data *data);
+
 
 #endif
