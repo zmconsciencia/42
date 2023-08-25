@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:54:21 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/26 14:54:33 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:25:06 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ time_t	gettime(void)
 
 void	my_usleep(int time_ms)
 {
-	struct	timeval t;
+	struct timeval	t;
 	__uint64_t		start;
 	__uint64_t		end;
 

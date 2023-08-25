@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:23:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/26 14:54:39 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:24:30 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,10 @@ void	*routine(void *arg)
 	pthread_mutex_lock(&philo->c_time);
 	philo->time_to_die = gettime() + data()->time_to_die;
 	pthread_mutex_unlock(&philo->c_time);
-	// pthread_mutex_lock(&philo->dead_mutex);
 	if (philo->id % 2 == 0)
 		my_usleep(200);
 	while (!philo->status)
 	{
-		// pthread_mutex_unlock(&philo->dead_mutex);
 		pickforks(philo);
 		pthread_mutex_lock(&philo->dead_mutex);
 		if (!philo->status)
@@ -72,9 +70,7 @@ void	*routine(void *arg)
 			printf("%ld %d is thinking\n", gettime(), philo->id);
 		}
 		pthread_mutex_unlock(&philo->dead_mutex);
-		// pthread_mutex_lock(&philo->dead_mutex);
 	}
-	// pthread_mutex_unlock(&philo->dead_mutex);
 	return (NULL);
 }
 
@@ -147,13 +143,14 @@ int	philo_to_thread(t_data *data)
 		pthread_mutex_destroy(&philo->dead_mutex);
 		pthread_mutex_destroy(philo->l_fork);
 		pthread_mutex_destroy(philo->r_fork);
+		philo = philo->next;
 	}
 	return (1);
 }
 
 int	main(int ac, char **av)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = data()->head;
 	data()->start_time = gettime();

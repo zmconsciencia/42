@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/26 14:54:58 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:25:20 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_philo
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	c_time;
-	pthread_mutex_t c_eat;
+	pthread_mutex_t	c_eat;
 	struct s_philo	*next;
 }		t_philo;
 
