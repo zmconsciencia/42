@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:32:53 by jabecass          #+#    #+#             */
-/*   Updated: 2023/08/25 19:05:37 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/25 19:56:35 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	set_limits(int n, int err)
 	}
 	else
 	{
-		if (n < 0 || n > INT_MAX)
+		if (n <= 0 || n > INT_MAX)
 			data()->err = 1;
 	}
 	return (n);
