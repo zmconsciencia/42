@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:51:14 by jabecass          #+#    #+#             */
-/*   Updated: 2023/08/26 18:54:46 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/26 19:34:50 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,7 @@ void	unalive_philo(t_data *data)
 	while (philo != NULL)
 	{
 		pthread_mutex_lock(&philo->dead_mutex);
-		philo = philo->next;
-	}
-	philo = data->head;
-	while (philo != NULL)
-	{
 		philo->status = 1;
-		philo = philo->next;
-	}
-	philo = data->head;
-	while (philo != NULL)
-	{
 		pthread_mutex_unlock(&philo->dead_mutex);
 		philo = philo->next;
 	}
