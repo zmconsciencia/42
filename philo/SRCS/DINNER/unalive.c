@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:51:14 by jabecass          #+#    #+#             */
-/*   Updated: 2023/08/26 13:40:06 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:54:46 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void	check_death(t_data *data)
 		}
 		pthread_mutex_unlock(&philo->c_time);
 		pthread_mutex_lock(&philo->c_eat);
-		if (philo->eat_count == data->nb_eat && data->nb_eat)
-			reps++;
+		if (data->nb_eat)
+			if ((philo->eat_count == data->nb_eat))
+				reps++;
 		pthread_mutex_unlock(&philo->c_eat);
 		philo = philo->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:49:03 by jabecass          #+#    #+#             */
-/*   Updated: 2023/08/25 19:07:21 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:58:01 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(&philo->dead_mutex);
 	if (!philo->status)
 	{
-		printf("%ld %d is sleeping\n", gettime(), philo->id);
+		printf("%ld %d is sleeping, status: %d\n", gettime(), philo->id);
 		my_usleep(data()->time_to_sleep);
-		printf("%ld %d is thinking\n", gettime(), philo->id);
 	}
 	pthread_mutex_unlock(&philo->dead_mutex);
 }
@@ -66,6 +65,10 @@ void	*routine(void *arg)
 	pthread_mutex_lock(&philo->c_time);
 	philo->time_to_die = gettime() + data()->time_to_die;
 	pthread_mutex_unlock(&philo->c_time);
+	pthread_mutex_lock(&philo->dead_mutex);
+	if (!philo->status)
+		printf("%ld %d is thinking\n", gettime(), philo->id);
+	pthread_mutex_unlock(&philo->dead_mutex);
 	if (philo->id % 2 == 0)
 		my_usleep(200);
 	while (!philo->status)
