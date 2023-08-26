@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/08/25 19:10:03 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/26 13:39:26 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ char		*ft_strdup(const char *s);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		check_death(t_data *data);
 void		free_all(t_data *data);
-
 
 #endif
