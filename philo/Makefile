@@ -27,7 +27,7 @@ OBJECTSPARSE = $(SOURCESPARSEF:.c=.o)
 OBJECTSDINNER = $(SOURCESDINNERF:.c=.o)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -g -pthread -IINCS -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 NAME = philo
 

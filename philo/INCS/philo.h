@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/08/26 13:39:26 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:37:13 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		my_usleep(int time_ms);
 
 //threads
 int			philo_to_thread(t_data *data);
-void		check_death(t_data *data);
+void		check_death(t_data *data, int reps);
 
 //data
 t_data		*data(void);
@@ -76,7 +76,6 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 char		*ft_strdup(const char *s);
 void		*ft_calloc(size_t nmemb, size_t size);
-void		check_death(t_data *data);
 void		free_all(t_data *data);
 
 #endif

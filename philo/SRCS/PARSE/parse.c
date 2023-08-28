@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:32:53 by jabecass          #+#    #+#             */
-/*   Updated: 2023/08/26 13:49:32 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/08/28 11:32:43 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	parser(char **av)
 	int	status;
 
 	status = 0;
-	if (av[1][0] == '1' && ft_strlen(av[1]) == 1)
+	if (av[1][0] == '1' && av[1][1] == '\0')
 	{
 		printf("%d 1 died\n", ft_atoi(av[2], &status));
 		return (0);
